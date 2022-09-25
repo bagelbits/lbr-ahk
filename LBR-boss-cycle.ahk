@@ -10,17 +10,16 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 Numpad0::
   ; Send, 4
   ; Send, 5
-  ; TODO: Play with minimizing Sleep
-  ; if (HasWitchSpawned()) {
-  ;   Send, v
-  ;   ; Cycle Witch
-  ;   DelayedSendEvent("{Click 1781 785}")
-  ;   Delay(1500)
-  ;   ; Teleport home
-  ;   DelayedSend("{Space}")
-  ;   DelayedSend("v")
-  ; }
-  if (HasCentaurSpawned()) {
+  if (HasWitchSpawned() or HasWitchSpawnedWithMenu()) {
+    Send, v
+    ; Cycle Witch
+    DelayedSendEvent("{Click 1781 785 0}")
+    Delay(1500)
+    ; Teleport home
+    DelayedSend("{Space}")
+    DelayedSend("v")
+  }
+  if (HasCentaurSpawned() or HasCentaurSpawnedWithMenu()) {
     Send, v
     ; Cycle other timer bosses
     Loop, 9 {
@@ -56,7 +55,9 @@ Numpad0::
     Delay(1500)
     ; Super Terror
     DelayedSendEvent("{Click 1761 1086 0}")
+    DelayedSend("2")
     Delay(1500)
+    DelayedSend("1")
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Ctrl Down}")
@@ -69,10 +70,40 @@ Numpad0::
 HasWitchSpawned() {
   ; #Include graphicsearch.ahk\export.ahk
 
-  t1 := A_TickCount, X := Y := ""
+  ; t1 := A_TickCount, X := Y := ""
   ; TODO: Also search when menu open
   graphicsearch_query := "|<Witch Spawned>FFFFFF-000000$71.0000000000000000000000A00000000000M3z7CATs1w0zk7yCQMzk3s1zUDwQslzU7k3z0UMtlXUtlwM610lnX71nXskA21Xb6C3b7lUM437CAQ7Dk30k86CQMsCTU61UDwTz1kQ7k3z0Tszy3UsDU7y0zlzw71kT0Dw0000000000004"
-  resultObj := graphicsearch.search(GraphicSearch_query)
+  resultObj := graphicsearch.search(graphicSearch_query)
+
+  ; For Debug purposes:
+  ; if (resultObj) {
+  ;   X := resultObj.1.x, Y := resultObj.1.y, Comment := resultObj.1.id
+  ;   ; Click, %X%, %Y%
+  ; }
+
+  ; MsgBox, 4096, Tip, % "Found :`t" Round(resultObj.MaxIndex())
+  ;   . "`n`nTime  :`t" (A_TickCount-t1) " ms"
+  ;   . "`n`nPos   :`t" X ", " Y
+  ;   . "`n`nResult:`t" (resultObj ? "Success !" : "Failed !")
+
+  ; for i,v in resultObj
+  ;   if (i<=2)
+  ;     graphicsearch.mouseTip(resultObj[i].x, resultObj[i].y)
+
+  if (resultObj) {
+    return true
+  } else {
+    return false
+  }
+}
+
+HasWitchSpawnedWithMenu() {
+  ; #Include graphicsearch.ahk\export.ahk
+
+  ; t1 := A_TickCount, X := Y := ""
+  ; TODO: Also search when menu open
+  graphicsearch_query := "|<>909090-000000$68.0000000000000000000000M000000000067yCQMzk3s1zVzXb6Dw0y0TsTstlXz0DU7yM6CQMsCQT61a1Xb6C3b7lUNUMtlXUtlwM6M6CQMsCTU61a1Xb6C3bs1UMTszy3UsDU7y7yDzUsC3s1zVzXzsC3Uy0Ts00000000000U"
+  resultObj := graphicsearch.search(graphicSearch_query)
 
   ; For Debug purposes:
   ; if (resultObj) {
@@ -99,10 +130,40 @@ HasWitchSpawned() {
 HasCentaurSpawned() {
   ; #Include graphicsearch.ahk\export.ahk
 
-  t1 := A_TickCount, X := Y := ""
+  ; t1 := A_TickCount, X := Y := ""
   ; TODO: Also search when menu open
   graphicsearch_query := "|<Centaur Spawned>FFFFFF-000000$71.0000000000000000000000000000000000000000000000000000000000000000000001U000000000030000000000060zlnX7y0T0Dw1zXb6Dw0y0TsA37CAQ7CDX0kM6CQMsCQT61UkAQslkQsyA31UMtlXUty0M630lnX71nw0kA1zXzsC3Uy0Ts3z7zkQ71w0zk7yDzUsC3s1zU00000000000000000000000000000000000000000000000000000000000000000000000000000000001"
-  resultObj := graphicsearch.search(GraphicSearch_query)
+  resultObj := graphicsearch.search(graphicsearch_query)
+
+  ; For Debug purposes:
+  ; if (resultObj) {
+  ;   X := resultObj.1.x, Y := resultObj.1.y, Comment := resultObj.1.id
+  ;   ; Click, %X%, %Y%
+  ; }
+
+  ; MsgBox, 4096, Tip, % "Found :`t" Round(resultObj.MaxIndex())
+  ;   . "`n`nTime  :`t" (A_TickCount-t1) " ms"
+  ;   . "`n`nPos   :`t" X ", " Y
+  ;   . "`n`nResult:`t" (resultObj ? "Success !" : "Failed !")
+
+  ; for i,v in resultObj
+  ;   if (i<=2)
+  ;     graphicsearch.mouseTip(resultObj[i].x, resultObj[i].y)
+
+  if (resultObj) {
+    return true
+  } else {
+    return false
+  }
+}
+
+HasCentaurSpawnedWithMenu() {
+  ; #Include graphicsearch.ahk\export.ahk
+
+  ; t1 := A_TickCount, X := Y := ""
+  ; TODO: Also search when menu open
+  graphicsearch_query := graphicsearch_query := "|<Menu Centaur Spawned>909090-000000$68.0000000000000000000000M0000000000600000000001VzXb6Dw0y0TsTstlXz0DU7yM6CQMsCQT61a1Xb6C3b7lUNUMtlXUtlwM6M6CQMsCTU61a1Xb6C3bs1UMTszy3UsDU7y7yDzUsC3s1zVzXzsC3Uy0Ts00000000000U"
+  resultObj := graphicsearch.search(graphicsearch_query)
 
   ; For Debug purposes:
   ; if (resultObj) {
