@@ -6,12 +6,16 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
+; TODO:
+; * actually click
+; * loop
+; * spam skulls and wind
 #IfWinActive Leaf Blower Revolution
 Numpad0::
-  ; Send, 4
-  ; Send, 5
+  DelayedSend("4")
+  DelayedSend("5")
   if (HasWitchSpawned() or HasWitchSpawnedWithMenu()) {
-    Send, v
+    DelayedSend("v")
     ; Cycle Witch
     DelayedSendEvent("{Click 1781 785 0}")
     Delay(1500)
@@ -20,7 +24,7 @@ Numpad0::
     DelayedSend("v")
   }
   if (HasCentaurSpawned() or HasCentaurSpawnedWithMenu()) {
-    Send, v
+    DelayedSend("v")
     ; Cycle other timer bosses
     Loop, 9 {
       DelayedSend("{WheelDown}")
@@ -206,4 +210,5 @@ Delay(Ms:=100) {
   return
 }
 
+#IfWinActive
 Esc::ExitApp ;Escape key will exit... place this at the bottom of the script
