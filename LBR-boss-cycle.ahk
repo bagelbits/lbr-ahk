@@ -6,68 +6,68 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
-; TODO:
-; * actually click
-; * loop
-; * spam skulls and wind
+; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
-  DelayedSend("4")
-  DelayedSend("5")
-  if (HasWitchSpawned() or HasWitchSpawnedWithMenu()) {
-    DelayedSend("v")
-    ; Cycle Witch
-    DelayedSendEvent("{Click 1781 785 0}")
-    Delay(1500)
-    ; Teleport home
-    DelayedSend("{Space}")
-    DelayedSend("v")
-  }
-  if (HasCentaurSpawned() or HasCentaurSpawnedWithMenu()) {
-    DelayedSend("v")
-    ; Cycle other timer bosses
-    Loop, 9 {
-      DelayedSend("{WheelDown}")
+  Loop {
+    DelayedSend("4")
+    DelayedSend("5")
+    if (HasWitchSpawned() or HasWitchSpawnedWithMenu()) {
+      DelayedSend("v")
+      ; Cycle Witch
+      DelayedSendEvent("{Click 1781 785 2}")
+      Delay(1500)
+      ; Teleport home
+      DelayedSend("{Space}")
+      DelayedSend("v")
     }
-    ; Centaur
-    DelayedSendEvent("{Click 1761 336 0}")
-    Delay(1500)
-    ; Vile Creature
-    DelayedSendEvent("{Click 1761 476 0}")
-    Delay(1500)
-    ; Air Elemental
-    DelayedSendEvent("{Click 1761 626 0}")
-    Delay(1500)
-    ; Spark Bubble v
-    DelayedSendEvent("{Click 1761 766 0}")
-    Delay(1500)
-    ; Terror Blue
-    DelayedSendEvent("{Click 1761 906 0}")
-    Delay(1500)
-    ; Terror Green
-    DelayedSendEvent("{Click 1761 1046 0}")
-    Delay(1500)
-    ; Scroll again
-    Loop, 5 {
-      DelayedSend("{WheelDown}")
+    Delay()
+    if (HasCentaurSpawned() or HasCentaurSpawnedWithMenu()) {
+      DelayedSend("v")
+      ; Cycle other timer bosses
+      Loop, 9 {
+        DelayedSend("{WheelDown}")
+      }
+      ; Centaur
+      DelayedSendEvent("{Click 1761 336 2}")
+      Delay(1500)
+      ; Vile Creature
+      DelayedSendEvent("{Click 1761 476 2}")
+      Delay(1500)
+      ; Air Elemental
+      DelayedSendEvent("{Click 1761 626 2}")
+      Delay(1500)
+      ; Spark Bubble v
+      DelayedSendEvent("{Click 1761 766 2}")
+      Delay(1500)
+      ; Terror Blue
+      DelayedSendEvent("{Click 1761 906 2}")
+      Delay(1500)
+      ; Terror Green
+      DelayedSendEvent("{Click 1761 1046 2}")
+      Delay(1500)
+      ; Scroll again
+      Loop, 5 {
+        DelayedSend("{WheelDown}")
+      }
+      ; Terror Red
+      DelayedSendEvent("{Click 1761 786 2}")
+      Delay(1500)
+      ; Terror Purple
+      DelayedSendEvent("{Click 1761 936 2}")
+      Delay(1500)
+      ; Super Terror
+      DelayedSendEvent("{Click 1761 1086 2}")
+      DelayedSend("2")
+      Delay(1500)
+      DelayedSend("1")
+      ; Teleport home
+      DelayedSend("{Space}")
+      DelayedSend("{Ctrl Down}")
+      DelayedSend("{WheelUp}")
+      DelayedSend("{Ctrl Up}")
+      DelayedSend("v")
     }
-    ; Terror Red
-    DelayedSendEvent("{Click 1761 786 0}")
-    Delay(1500)
-    ; Terror Purple
-    DelayedSendEvent("{Click 1761 936 0}")
-    Delay(1500)
-    ; Super Terror
-    DelayedSendEvent("{Click 1761 1086 0}")
-    DelayedSend("2")
-    Delay(1500)
-    DelayedSend("1")
-    ; Teleport home
-    DelayedSend("{Space}")
-    DelayedSend("{Ctrl Down}")
-    DelayedSend("{WheelUp}")
-    DelayedSend("{Ctrl Up}")
-    DelayedSend("v")
   }
   return
 
