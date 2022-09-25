@@ -1,0 +1,14 @@
+{
+  "name": "lbr-ahk",
+  "version": "1.0.0",
+  "description": "AutoHotKey Scripts for Leaf Blower Revolution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Ward",
+  "license": "ISC",
+  "dependencies": {
+    "graphicsearch.ahk": "^0.4.0"
+  }
+}
