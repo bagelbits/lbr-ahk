@@ -6,6 +6,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
+
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
@@ -202,14 +203,12 @@ DelayedSendEvent(key:="{Click}") {
 
 Delay(Ms:=100) {
   Sleep Ms
-  return
 }
 
 ScrollToTop(){
   DelayedSend("{Ctrl Down}")
   DelayedSend("{WheelUp}")
   DelayedSend("{Ctrl Up}")
-  return
 }
 
 #IfWinActive
