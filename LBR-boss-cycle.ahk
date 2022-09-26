@@ -73,8 +73,8 @@ HasCentaurSpawned() {
   return BossSpawnedSearch(withMenuQuery) or BossSpawnedSearch(withoutMenuQuery)
 }
 
-ClickAndWaitForBoss(x, y) {
-  DelayedSendEvent("{Click " x " " y " 0}")
+ClickAndWaitForBoss(x, y, clickCount := 2) {
+  DelayedSendEvent("{Click " x " " y " " clickCount "}")
   Delay(1500)
 }
 
