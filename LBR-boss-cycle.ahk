@@ -43,17 +43,22 @@ Numpad0::
       ; Terror Green
       ClickAndWaitForBoss(1761, 1046)
       ; Scroll again
-      Loop, 5 {
-        DelayedSend("{WheelDown}")
-      }
+      ScrollToBottom()
       ; Terror Red
-      ClickAndWaitForBoss(1761, 786)
+      ClickAndWaitForBoss(1761, 346)
       ; Terror Purple
-      ClickAndWaitForBoss(1761, 936)
+      ClickAndWaitForBoss(1761, 486)
       ; Super Terror
       DelayedSend("2")
-      ClickAndWaitForBoss(1761, 1086)
+      ClickAndWaitForBoss(1761, 636)
+      ; Hit the counter
+      ScrollToBottom()
+      DelayedSendEvent("{Click 1742 910 2}")
+      DelayedSend("v")
+      DelayedSendEvent("{Click 1491 531 2}")
+      DelayedSendEvent("{Click 914 470 2}")
       DelayedSend("1")
+      DelayedSend("v")
       ; Teleport home
       DelayedSend("{Space}")
       DelayedSend("v")
