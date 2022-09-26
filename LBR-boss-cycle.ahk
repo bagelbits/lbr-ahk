@@ -65,7 +65,7 @@ Numpad0::
       DelayedSend("v")
       bossCycleCount++
 
-      if (bossCycleCount >= 5) {
+      if (bossCycleCount >= 2) {
         AttemptTranscendAll()
         bossCycleCount := 0
       }
