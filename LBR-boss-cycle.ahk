@@ -122,6 +122,9 @@ BossSpawnedSearch(searchQuery, options) {
 
 AttemptTranscendAll() {
   DelayedSend("{F5}")
+  ; Hit Transcend tab
+  DelayedSendEvent("{Click 661 1207 2}")
+  ; Attempt to transcend all
   DelayedSendEvent("{Click 482 399 2}")
   DelayedSendEvent("{Click 1253 539 2}")
   DelayedSendEvent("{Click 952 399 2}")
