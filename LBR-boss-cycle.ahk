@@ -10,6 +10,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
+  bossCycleCount := 0
   Loop {
     DelayedSend("4")
     DelayedSend("5")
@@ -62,6 +63,12 @@ Numpad0::
       ; Teleport home
       DelayedSend("{Space}")
       DelayedSend("v")
+      bossCycleCount++
+
+      if (bossCycleCount >= 5) {
+        AttemptTranscendAll()
+        bossCycleCount := 0
+      }
     }
   }
   return
@@ -111,6 +118,15 @@ BossSpawnedSearch(searchQuery, options) {
   } else {
     return false
   }
+}
+
+AttemptTranscendAll() {
+  DelayedSend("{F5}")
+  DelayedSendEvent("{Click 482 399 2}")
+  DelayedSendEvent("{Click 1253 539 2}")
+  DelayedSendEvent("{Click 952 399 2}")
+  DelayedSendEvent("{Click 1253 539 2}")
+  DelayedSend("{F5}")
 }
 
 DelayedSend(key:="v") {
