@@ -17,8 +17,7 @@ Numpad0::
       DelayedSend("v")
       ScrollToTop()
       ; Cycle Witch
-      DelayedSendEvent("{Click 1781 785 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1781, 785)
       ; Teleport home
       DelayedSend("{Space}")
       DelayedSend("v")
@@ -32,37 +31,28 @@ Numpad0::
         DelayedSend("{WheelDown}")
       }
       ; Centaur
-      DelayedSendEvent("{Click 1761 336 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 336)
       ; Vile Creature
-      DelayedSendEvent("{Click 1761 476 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 476)
       ; Air Elemental
-      DelayedSendEvent("{Click 1761 626 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 626)
       ; Spark Bubble v
-      DelayedSendEvent("{Click 1761 766 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 766)
       ; Terror Blue
-      DelayedSendEvent("{Click 1761 906 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 906)
       ; Terror Green
-      DelayedSendEvent("{Click 1761 1046 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 1046)
       ; Scroll again
       Loop, 5 {
         DelayedSend("{WheelDown}")
       }
       ; Terror Red
-      DelayedSendEvent("{Click 1761 786 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 786)
       ; Terror Purple
-      DelayedSendEvent("{Click 1761 936 0}")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 936)
       ; Super Terror
-      DelayedSendEvent("{Click 1761 1086 0}")
       DelayedSend("2")
-      Delay(1500)
+      ClickAndWaitForBoss(1761, 1086)
       DelayedSend("1")
       ; Teleport home
       DelayedSend("{Space}")
@@ -81,6 +71,11 @@ HasCentaurSpawned() {
   withMenuQuery := "|<Menu Centaur Spawned>909090-000000$68.0000000000000000000000M0000000000600000000001VzXb6Dw0y0TsTstlXz0DU7yM6CQMsCQT61a1Xb6C3b7lUNUMtlXUtlwM6M6CQMsCTU61a1Xb6C3bs1UMTszy3UsDU7y7yDzUsC3s1zVzXzsC3Uy0Ts00000000000U"
   withoutMenuQuery := "|<Centaur Spawned>FFFFFF-000000$71.0000000000000000000000000000000000000000000000000000000000000000000001U000000000030000000000060zlnX7y0T0Dw1zXb6Dw0y0TsA37CAQ7CDX0kM6CQMsCQT61UkAQslkQsyA31UMtlXUty0M630lnX71nw0kA1zXzsC3Uy0Ts3z7zkQ71w0zk7yDzUsC3s1zU00000000000000000000000000000000000000000000000000000000000000000000000000000000001"
   return BossSpawnedSearch(withMenuQuery) or BossSpawnedSearch(withoutMenuQuery)
+}
+
+ClickAndWaitForBoss(x, y) {
+  DelayedSendEvent("{Click " x " " y " 0}")
+  Delay(1500)
 }
 
 BossSpawnedSearch(searchQuery) {
@@ -128,6 +123,12 @@ Delay(Ms:=100) {
 ScrollToTop(){
   DelayedSend("{Ctrl Down}")
   DelayedSend("{WheelUp}")
+  DelayedSend("{Ctrl Up}")
+}
+
+ScrollToBottom(){
+  DelayedSend("{Ctrl Down}")
+  DelayedSend("{WheelDown}")
   DelayedSend("{Ctrl Up}")
 }
 
