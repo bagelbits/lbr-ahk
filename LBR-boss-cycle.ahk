@@ -54,10 +54,10 @@ Numpad0::
       ClickAndWaitForBoss(1761, 636)
       ; Hit the counter
       ScrollToBottom()
-      DelayedSendEvent("{Click 1742 910 2}")
+      DelayedClick(1742, 910)
       DelayedSend("v")
-      DelayedSendEvent("{Click 1491 531 2}")
-      DelayedSendEvent("{Click 914 470 2}")
+      DelayedClick(1491, 531)
+      DelayedClick(914, 470)
       DelayedSend("1")
       DelayedSend("v")
       ; Teleport home
@@ -87,8 +87,8 @@ HasCentaurSpawned() {
   return BossSpawnedSearch(withMenuQuery, search_options) or BossSpawnedSearch(withoutMenuQuery, search_options)
 }
 
-ClickAndWaitForBoss(x, y, clickCount := 2) {
-  DelayedSendEvent("{Click " x " " y " " clickCount "}")
+ClickAndWaitForBoss(x, y, clickCount := 1) {
+  DelayedClick(x, y, clickCount)
   Delay(1500)
 }
 
@@ -123,12 +123,12 @@ BossSpawnedSearch(searchQuery, options) {
 AttemptTranscendAll() {
   DelayedSend("{F5}")
   ; Hit Transcend tab
-  DelayedSendEvent("{Click 661 1207 2}")
+  DelayedClick(661, 1202)
   ; Attempt to transcend all
-  DelayedSendEvent("{Click 482 399 2}")
-  DelayedSendEvent("{Click 1253 539 2}")
-  DelayedSendEvent("{Click 952 399 2}")
-  DelayedSendEvent("{Click 1253 539 2}")
+  DelayedClick(482, 399)
+  DelayedClick(1253, 539)
+  DelayedClick(952, 399)
+  DelayedClick(1253, 539)
   DelayedSend("{F5}")
 }
 
@@ -140,6 +140,11 @@ DelayedSend(key:="v") {
 DelayedSendEvent(key:="{Click}") {
   Delay()
   SendEvent, %key%
+}
+
+DelayedClick(x, y, clickCount := 1) {
+  DelayedSendEvent("{Click " x " " y " " clickCount " D}")
+  DelayedSendEvent("{Click " x " " y " " clickCount " U}")
 }
 
 Delay(Ms:=100) {
