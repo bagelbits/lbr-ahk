@@ -173,6 +173,7 @@ DelayedSendEvent(key:="{Click}") {
 
 DelayedClick(x, y, button := "Left") {
   DelayedSendEvent("{Click " x " " y " 1 D " button "}")
+  Delay(200)
   DelayedSendEvent("{Click " x " " y " 1 U " button "}")
 }
 
