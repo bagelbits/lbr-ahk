@@ -14,64 +14,79 @@ Numpad0::
   Loop {
     DelayedSend("4")
     DelayedSend("5")
-    if (HasWitchSpawned()) {
-      DelayedSend("v")
-      ScrollToTop()
-      ; Cycle Witch
-      ClickAndWaitForBoss(1781, 785)
-      ; Teleport home
-      DelayedSend("{Space}")
-      DelayedSend("v")
-    }
-    Delay()
-    if (HasCentaurSpawned()) {
-      DelayedSend("v")
-      ScrollToTop()
-      ; Cycle other timer bosses
-      Loop, 9 {
-        DelayedSend("{WheelDown}")
-      }
-      ; Centaur
-      ClickAndWaitForBoss(1761, 336)
-      ; Vile Creature
-      ClickAndWaitForBoss(1761, 476)
-      ; Air Elemental
-      ClickAndWaitForBoss(1761, 626)
-      ; Spark Bubble v
-      ClickAndWaitForBoss(1761, 766)
-      ; Terror Blue
-      ClickAndWaitForBoss(1761, 906)
-      ; Terror Green
-      ClickAndWaitForBoss(1761, 1046)
-      ; Scroll again
-      ScrollToBottom()
-      ; Terror Red
-      ClickAndWaitForBoss(1761, 346)
-      ; Terror Purple
-      ClickAndWaitForBoss(1761, 486)
-      ; Super Terror
-      DelayedSend("2")
-      ClickAndWaitForBoss(1761, 636)
-      ; Hit the counter
-      ScrollToBottom()
-      DelayedClick(1742, 910)
-      DelayedSend("v")
-      DelayedClick(1491, 531)
-      DelayedClick(914, 470)
-      DelayedSend("1")
-      DelayedSend("v")
-      ; Teleport home
-      DelayedSend("{Space}")
-      DelayedSend("v")
-      bossCycleCount++
-
-      if (bossCycleCount >= 2) {
-        AttemptTranscendAll()
-        bossCycleCount := 0
-      }
-    }
+    bossCycleCount := BossCycle(bossCycleCount)
   }
   return
+
+Numpad1::
+  bossCycleCount := 0
+  Loop {
+    DelayedSend("6")
+    ; Find and use violin
+    FindAndUseViolin()
+    ; Attempt to cycle bosses
+    bossCycleCount := BossCycle(bossCycleCount)
+  }
+
+
+BossCycle(bossCycleCount := 0) {
+  if (HasWitchSpawned()) {
+    DelayedSend("v")
+    ScrollToTop()
+    ; Cycle Witch
+    ClickAndWaitForBoss(1781, 785)
+    ; Teleport home
+    DelayedSend("{Space}")
+    DelayedSend("v")
+  }
+  if (HasCentaurSpawned()) {
+    DelayedSend("v")
+    ScrollToTop()
+    ; Cycle other timer bosses
+    Loop, 9 {
+      DelayedSend("{WheelDown}")
+    }
+    ; Centaur
+    ClickAndWaitForBoss(1761, 336)
+    ; Vile Creature
+    ClickAndWaitForBoss(1761, 476)
+    ; Air Elemental
+    ClickAndWaitForBoss(1761, 626)
+    ; Spark Bubble v
+    ClickAndWaitForBoss(1761, 766)
+    ; Terror Blue
+    ClickAndWaitForBoss(1761, 906)
+    ; Terror Green
+    ClickAndWaitForBoss(1761, 1046)
+    ; Scroll again
+    ScrollToBottom()
+    ; Terror Red
+    ClickAndWaitForBoss(1761, 346)
+    ; Terror Purple
+    ClickAndWaitForBoss(1761, 486)
+    ; Super Terror
+    DelayedSend("2")
+    ClickAndWaitForBoss(1761, 636)
+    ; Hit the counter
+    ScrollToBottom()
+    DelayedClick(1742, 910)
+    DelayedSend("v")
+    DelayedClick(1491, 531)
+    DelayedClick(914, 470)
+    DelayedSend("1")
+    DelayedSend("v")
+    ; Teleport home
+    DelayedSend("{Space}")
+    DelayedSend("v")
+    bossCycleCount++
+
+    if (bossCycleCount >= 2) {
+      AttemptTranscendAll()
+      bossCycleCount := 0
+    }
+  }
+  return bossCycleCount
+}
 
 HasWitchSpawned() {
   withMenuQuery := "|<Menu Witch Spawned>909090-000000$68.0000000000000000000000M000000000067yCQMzk3s1zVzXb6Dw0y0TsTstlXz0DU7yM6CQMsCQT61a1Xb6C3b7lUNUMtlXUtlwM6M6CQMsCTU61a1Xb6C3bs1UMTszy3UsDU7y7yDzUsC3s1zVzXzsC3Uy0Ts00000000000U"
@@ -87,9 +102,23 @@ HasCentaurSpawned() {
   return BossSpawnedSearch(withMenuQuery, search_options) or BossSpawnedSearch(withoutMenuQuery, search_options)
 }
 
-ClickAndWaitForBoss(x, y, clickCount := 1) {
-  DelayedClick(x, y, clickCount)
+ClickAndWaitForBoss(x, y) {
+  DelayedClick(x, y)
   Delay(1500)
+}
+
+FindAndUseViolin() {
+  ; Wait for violin to stop moving
+  Delay(200)
+  graphicsearch_query := "|<Violin>0xC68862@1.00$2.y"
+  resultObj := graphicsearch.search(graphicsearch_query)
+  if (resultObj) {
+    X := resultObj.1.x, Y := resultObj.1.y
+    DelayedClick(X, Y, "Right")
+    DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, "Right")
+    DelayedSend("7")
+  }
+  return
 }
 
 BossSpawnedSearch(searchQuery, options) {
@@ -142,12 +171,12 @@ DelayedSendEvent(key:="{Click}") {
   SendEvent, %key%
 }
 
-DelayedClick(x, y, clickCount := 1) {
-  DelayedSendEvent("{Click " x " " y " " clickCount " D}")
-  DelayedSendEvent("{Click " x " " y " " clickCount " U}")
+DelayedClick(x, y, button := "Left") {
+  DelayedSendEvent("{Click " x " " y " 1 D " button "}")
+  DelayedSendEvent("{Click " x " " y " 1 U " button "}")
 }
 
-Delay(Ms:=100) {
+Delay(Ms:=50) {
   Sleep Ms
 }
 
