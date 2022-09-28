@@ -33,6 +33,7 @@ Numpad1::
     FindViolin()
     DelayedSend("7")
   }
+  return
 
 
 BossCycle(bossCycleCount := 0, cycleMax := 2) {
