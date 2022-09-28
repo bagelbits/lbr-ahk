@@ -14,6 +14,7 @@ Numpad0::
   Loop {
     DelayedSend("4")
     DelayedSend("5")
+    WitchCycle()
     bossCycleCount := BossCycle(bossCycleCount)
   }
   return
@@ -23,7 +24,10 @@ Numpad1::
   cycleMax := 10
   Loop {
     ; Attempt to cycle bosses
-    bossCycleCount := BossCycle(bossCycleCount, cycleMax)
+    WitchCycle()
+    ; Put on reroll set (Brew/MBrew)
+    DelayedSend("3")
+    BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend("6")
     DelayedSend("7")
@@ -35,9 +39,10 @@ Numpad1::
   }
   return
 
-
-BossCycle(bossCycleCount := 0, cycleMax := 2) {
+WitchCycle() {
   if (HasWitchSpawned()) {
+    ; Put on WEM/WCM set
+    DelayedSend("1")
     DelayedSend("v")
     ScrollToTop()
     ; Cycle Witch
@@ -46,6 +51,9 @@ BossCycle(bossCycleCount := 0, cycleMax := 2) {
     DelayedSend("{Space}")
     DelayedSend("v")
   }
+}
+
+BossCycle(bossCycleCount := 0, cycleMax := 2) {
   if (HasCentaurSpawned()) {
     DelayedSend("v")
     ScrollToTop()
@@ -117,6 +125,22 @@ ClickAndWaitForBoss(x, y) {
   DelayedClick(x, y)
   DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
   Delay(850)
+}
+
+BrewDE() {
+  DelayedSend("s")
+  ScrollToTop()
+  if (CanBrew({x1: 1707, y1: 439, x2: 1811 , y2: 481})) {
+    DelayedClick(1758, 462)
+  }
+  DelayedSend("s")
+}
+
+CanBrew(search_options: {}) {
+  brewButton = ""
+  has_found := BossSpawnedSearch(brewButton, search_options)
+  search_options := ""
+  return has_found
 }
 
 FindViolin() {
