@@ -22,6 +22,9 @@ Numpad1::
   bossCycleCount := 0
   cycleMax := 10
   Loop {
+    ; Attempt to cycle bosses
+    bossCycleCount := BossCycle(bossCycleCount, cycleMax)
+    ; Spawn fruit and use extra violins
     DelayedSend("6")
     DelayedSend("7")
     ; Wait for violin to stop moving
@@ -29,8 +32,6 @@ Numpad1::
     ; Find and use violin
     FindViolin()
     DelayedSend("7")
-    ; Attempt to cycle bosses
-    bossCycleCount := BossCycle(bossCycleCount, cycleMax)
   }
 
 
@@ -114,7 +115,7 @@ HasCentaurSpawned() {
 ClickAndWaitForBoss(x, y) {
   DelayedClick(x, y)
   DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
-  Delay(800)
+  Delay(850)
 }
 
 FindViolin() {
@@ -188,11 +189,11 @@ DelayedClick(x, y, clickCount := 1, button := "Left") {
     return
   }
   DelayedSendEvent("{Click " x " " y " " clickCount " D " button "}")
-  Delay(200)
+  Delay(175)
   DelayedSendEvent("{Click " x " " y " " clickCount " U " button "}")
 }
 
-Delay(Ms:=100) {
+Delay(Ms:=75) {
   Sleep Ms
 }
 
