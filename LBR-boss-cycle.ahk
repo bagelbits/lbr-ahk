@@ -128,16 +128,16 @@ ClickAndWaitForBoss(x, y) {
 }
 
 BrewDE() {
-  DelayedSend("s")
+  DelayedSend("d")
   ScrollToTop()
   if (CanBrew({x1: 1707, y1: 439, x2: 1811 , y2: 481})) {
     DelayedClick(1758, 462)
   }
-  DelayedSend("s")
+  DelayedSend("d")
 }
 
 CanBrew(search_options: {}) {
-  brewButton = ""
+  brewButton = "|<BrewButton>0E0C07-000000$55.000000000Dw00000007y00000003z00000001kQzk3w7CAsCTs1y3b6TsC3X7lnXDw71lXstlby3UslwQsnUtk0T0CQNkQs0DU7CAzkQ01y3zsTsC00z1zwDw700TUzy0000000004"
   has_found := BossSpawnedSearch(brewButton, search_options)
   search_options := ""
   return has_found
