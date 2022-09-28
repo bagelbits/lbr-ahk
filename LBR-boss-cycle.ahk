@@ -20,18 +20,21 @@ Numpad0::
 
 Numpad1::
   bossCycleCount := 0
+  cycleMax := 10
   Loop {
     DelayedSend("6")
+    DelayedSend("7")
     ; Wait for violin to stop moving
     Delay(200)
     ; Find and use violin
-    FindAndUseViolin()
+    FindViolin()
+    DelayedSend("7")
     ; Attempt to cycle bosses
-    bossCycleCount := BossCycle(bossCycleCount)
+    bossCycleCount := BossCycle(bossCycleCount, cycleMax)
   }
 
 
-BossCycle(bossCycleCount := 0) {
+BossCycle(bossCycleCount := 0, cycleMax := 2) {
   if (HasWitchSpawned()) {
     DelayedSend("v")
     ScrollToTop()
@@ -82,7 +85,7 @@ BossCycle(bossCycleCount := 0) {
     DelayedSend("v")
     bossCycleCount++
 
-    if (bossCycleCount >= 2) {
+    if (bossCycleCount >= cycleMax) {
       AttemptTranscendAll()
       bossCycleCount := 0
     }
@@ -111,18 +114,16 @@ HasCentaurSpawned() {
 ClickAndWaitForBoss(x, y) {
   DelayedClick(x, y)
   DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
-  Delay(1000)
+  Delay(800)
 }
 
-FindAndUseViolin() {
+FindViolin() {
   graphicsearch_query := "|<Violin>0xC68862@1.00$2.y"
   resultObj := graphicsearch.search(graphicsearch_query)
   if (resultObj) {
     X := resultObj.1.x, Y := resultObj.1.y
     DelayedClick(X, Y, 0)
     ; Use Violin twice in case of build up
-    DelayedSend("7")
-    DelayedSend("7")
     DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
     resultObj := ""
   }
@@ -191,7 +192,7 @@ DelayedClick(x, y, clickCount := 1, button := "Left") {
   DelayedSendEvent("{Click " x " " y " " clickCount " U " button "}")
 }
 
-Delay(Ms:=50) {
+Delay(Ms:=100) {
   Sleep Ms
 }
 
