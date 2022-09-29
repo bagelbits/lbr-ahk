@@ -11,30 +11,32 @@ Numpad2::
   DelayedSend("a")
   GemTradeLoop()
   DelayedSend("a")
+  tradesCollected := 0
   Loop {
     if (TradesReady()) {
       DelayedSend("a")
       CollectTrades()
-      GemTradeLoop()
+      tradesCollected := GemTradeLoop(tradesCollected)
       DelayedSend("a")
+    }
+    if (tradesCollected >= 13) {
+      ; Leafscend()
+      ; RestockLeaves()
+      tradesCollected := tradesCollected - 13
     }
   }
   return
 
 Numpad0::
-  gemTrades := GetGemTrades()
-  for index, trade in gemTrades {
-    searchOptions := {x1: 2005, y1: trade.y - 23, x2: 2142, y2: trade.y + 22}
-
-    if (TradeBuyable(searchOptions)) {
-      BuyGemTrade(trade)
-    }
-  }
+  MsgBox % TradesReady()
   return
 
-GemTradeLoop() {
+GemTradeLoop(tradesCollected := 0) {
   ScrollToTop()
   Loop {
+    if(TradesReady()) {
+      CollectTrades()
+    }
     DelayedSend("``")
     if(NoMoreTrades()) {
       BoostAll()
@@ -45,10 +47,13 @@ GemTradeLoop() {
       searchOptions := {x1: 2005, y1: trade.y - 23, x2: 2142, y2: trade.y + 22}
       if (TradeBuyable(searchOptions)) {
         BuyGemTrade(trade)
+        tradesCollected++
+      } else {
+        break
       }
     }
   }
-  return
+  return tradesCollected
 }
 
 NoMoreTrades() {
@@ -80,15 +85,16 @@ TradeBuyable(options) {
 BuyGemTrade(trade) {
   X := trade.x, Y := trade.y
   DelayedClick(2080, Y + 15)
-  DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
+  DelayedClick(2020, 1138, 0)
 }
 
 TradesReady() {
   ; Check for notification
-  graphicsearch_query := "|<Trade ready>FF0000-000000$17.zzzzzzzzzzzzzzzzzzzzzXzz7zyDzwTzszzlzzXzz7zzzzzzzszzlzzXzzzzzzzzzk"
+  withoutMenuQuery := "|<Trade ready>FF0000-000000$17.zzzzzzzzzzzzzzzzzzzzzXzz7zyDzwTzszzlzzXzz7zzzzzzzszzlzzXzzzzzzzzzk"
+  withMenuQuery := "|<Trade ready With Menu>830000-000000$17.zzzzzzzzzzzzzzzzzzzzzzzz7zyDzwTzszzlzzXzz7zyDzzzzzzzlzzXzz7zzzzzzzzzzzz"
   options := {x1: 1430, y1: 1288, x2: 1466, y2: 1327}
-  resultObj := graphicsearch.search(graphicsearch_query, options )
-  if (resultObj) {
+  has_found := graphicsearch.search(withoutMenuQuery, options) or graphicsearch.search(withMenuQuery, options)
+  if (has_found) {
     return true
   }
   return false
