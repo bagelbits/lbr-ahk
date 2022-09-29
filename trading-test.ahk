@@ -98,4 +98,16 @@ BoostAll() {
 }
 
 #IfWinActive
-Esc::ExitApp ;Escape key will exit... place this at the bottom of the script
+F11::
+  Suspend
+  Pause, Toggle, 1
+  Return
+
+F12::
+  Suspend
+  Reload
+  Return
+
+Esc::
+  Suspend
+  ExitApp ;Escape key will exit... place this at the bottom of the script
