@@ -6,10 +6,11 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
-#Include %A_ScriptDir%\utils.ahk
-#Include %A_ScriptDir%\bossCycle.ahk
-#Include %A_ScriptDir%\brewing.ahk
-#Include %A_ScriptDir%\artifact.ahk
+#Include %A_ScriptDir%\helpers
+#Include utils.ahk
+#Include bossCycle.ahk
+#Include brewing.ahk
+#Include artifact.ahk
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
