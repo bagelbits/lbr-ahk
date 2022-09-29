@@ -8,16 +8,11 @@ SetWorkingDir, %A_ScriptDir%
 
 #IfWinActive Leaf Blower Revolution
 Numpad2::
-  DelayedSend("a")
   GemTradeLoop()
-  DelayedSend("a")
   tradesCollected := 0
   Loop {
     if (TradesReady()) {
-      DelayedSend("a")
-      CollectTrades()
       tradesCollected := GemTradeLoop(tradesCollected)
-      DelayedSend("a")
     }
     if (tradesCollected >= 13) {
       ; Leafscend()
@@ -32,6 +27,8 @@ Numpad0::
   return
 
 GemTradeLoop(tradesCollected := 0) {
+  DelayedSend("a")
+  CollectTrades()
   ScrollToTop()
   Loop {
     if(TradesReady()) {
@@ -53,6 +50,7 @@ GemTradeLoop(tradesCollected := 0) {
       }
     }
   }
+  DelayedSend("{Esc}")
   return tradesCollected
 }
 

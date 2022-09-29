@@ -45,7 +45,7 @@ WitchCycle() {
     ClickAndWaitForBoss(1781, 785)
     ; Teleport home
     DelayedSend("{Space}")
-    DelayedSend("v")
+    DelayedSend("{Esc}")
   }
 }
 
@@ -62,7 +62,7 @@ WitchCycleWithCount(witchCycleCount := 0, cycleMax := 4) {
     if (witchCycleCount >= cycleMax) {
       ScrollToBottom()
       DelayedClick(1742, 910)
-      DelayedSend("v")
+      DelayedSend("{Esc}")
       DelayedClick(1491, 531)
       DelayedClick(914, 470)
       DelayedSend("v")
@@ -71,7 +71,7 @@ WitchCycleWithCount(witchCycleCount := 0, cycleMax := 4) {
 
     ; Teleport home
     DelayedSend("{Space}")
-    DelayedSend("v")
+    DelayedSend("{Esc}")
     ; Put on reroll set (Brew/MBrew)
     DelayedSend("3")
   }
@@ -110,14 +110,14 @@ BossCycle(bossCycleCount := 0, cycleMax := 2) {
     ClickAndWaitForBoss(1761, 636)
     ; Hit the counter
     DelayedClick(1742, 910)
-    DelayedSend("v")
+    DelayedSend("{Esc}")
     DelayedClick(1491, 531)
     DelayedClick(914, 470)
     DelayedSend("1")
     DelayedSend("v")
     ; Teleport home
     DelayedSend("{Space}")
-    DelayedSend("v")
+    DelayedSend("{Esc}")
     bossCycleCount++
 
     if (bossCycleCount >= cycleMax) {
@@ -197,7 +197,3 @@ F12::
   Suspend
   Reload
   Return
-
-Esc::
-  Suspend
-  ExitApp ;Escape key will exit... place this at the bottom of the script
