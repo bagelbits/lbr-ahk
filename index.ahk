@@ -4,13 +4,11 @@
 SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
-Download "https://raw.githubusercontent.com/HotKeyIt/Yaml/ahkV2/Yaml.ahk", %A_ScriptDir%\lib\Yaml.ahk
-
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
-; #Include %A_ScriptDir%\lib
-; #Include Yaml.ahk
+#Include %A_ScriptDir%\lib
+#Include Yaml.ahk
 
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
