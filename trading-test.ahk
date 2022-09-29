@@ -4,32 +4,61 @@ SetWorkingDir, %A_ScriptDir%
 
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
-#Include utils.ahk
+#Include %A_ScriptDir%\utils.ahk
 
 #IfWinActive Leaf Blower Revolution
-Numpad0::
+Numpad2::
+  DelayedSend('a')
   GemTradeLoop()
-  ; loop
-  ;   if trades ready
-  ;     open trade window
-  ;     collect trades
-  ;     GemTradeLoop()
-  ;     close trade window
-  ;   do something else
+  DelayedSend('a')
+  Loop {
+    if (TradesReady()) {
+      DelayedSend('a')
+      CollectTrades()
+      GemTradeLoop()
+      DelayedSend('a')
+    }
+  }
+
+Numpad0::
+  ;
 
 GemTradeLoop() {
   Loop {
-
+    ScrollToTop()
+    if(NoMoreTrades()) {
+      break
+    }
+    gemTrades := GetGemTrades()
+    for index, element in gemTrades {
+      BuyGemTrade(element)
+    }
+    DelayedSend("`")
   }
-  ; loop
-  ;   scroll to the top of the page
-  ;   if first trade has no buy button
-  ;     break loop
-  ;   search for gem trades
-  ;   for each gem trade
-  ;     if buyable
-  ;       buy
-  ;   refresh trades
+  return
+}
+
+NoMoreTrades() {
+  ; if first trade has no buy button
+  ;   return true
+  ; return false
+}
+
+GetGemTrades() {
+  ; search for gem trades
+  ; return gem trades
+}
+
+BuyGemTrade(element) {
+  ; buy gem trade
+}
+
+TradesReady() {
+  ; Check for notification
+}
+
+CollectTrades() {
+  ; Collect trades
 }
 
 #IfWinActive
