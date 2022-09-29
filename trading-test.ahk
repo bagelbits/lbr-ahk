@@ -58,10 +58,7 @@ GemTradeLoop(tradesCollected := 0) {
 
 NoMoreTrades() {
   options := {x1: 2005, y1: 394, x2: 2142, y2: 453}
-  if (!TradeBuyable(options)) {
-    return true
-  }
-  return false
+  return !TradeBuyable(options)
 }
 
 GetGemTrades() {
@@ -75,11 +72,7 @@ TradeBuyable(options) {
   Delay()
   ; To make my life easier
   graphicsearch_query := "|<Trade Button>FFF1D2-000000$71.000000000000000000000000000000000001zzzzzzzzzzznzzzzzzzzzzzbzzzzzzzzzzzDzzzzzzzzzzyTzzzzzzzzzzwzzzzzzzzzzztzzzzzzzzzzznzzzzzzzzzzzbzzzzzzzzzzzDzzzzzzzzzzyTzzzzzzzzzzwzzzzzzzzzzztzzzzzzzzzzznzzzzzzzzzzzbzzzzzzzzzzzDzzzzzzzzzzz"
-  buyButtons := graphicsearch.search(graphicsearch_query, options)
-  if (buyButtons) {
-    return true
-  }
-  return false
+  return IsImagePresent(graphicsearch_query, options)
 }
 
 BuyGemTrade(trade) {
@@ -93,11 +86,7 @@ TradesReady() {
   withoutMenuQuery := "|<Trade ready>FF0000-000000$17.zzzzzzzzzzzzzzzzzzzzzXzz7zyDzwTzszzlzzXzz7zzzzzzzszzlzzXzzzzzzzzzk"
   withMenuQuery := "|<Trade ready With Menu>830000-000000$17.zzzzzzzzzzzzzzzzzzzzzzzz7zyDzwTzszzlzzXzz7zyDzzzzzzzlzzXzz7zzzzzzzzzzzz"
   options := {x1: 1430, y1: 1288, x2: 1466, y2: 1327}
-  has_found := graphicsearch.search(withoutMenuQuery, options) or graphicsearch.search(withMenuQuery, options)
-  if (has_found) {
-    return true
-  }
-  return false
+  return IsImagePresent(withoutMenuQuery, options) or IsImagePresent(withMenuQuery, options)
 }
 
 CollectTrades() {
