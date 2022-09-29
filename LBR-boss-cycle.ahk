@@ -113,6 +113,7 @@ BossCycle(bossCycleCount := 0, cycleMax := 2) {
     DelayedSend("{Esc}")
     DelayedClick(1491, 531)
     DelayedClick(914, 470)
+    DelayedSend("{Esc}")
     DelayedSend("1")
     DelayedSend("v")
     ; Teleport home
