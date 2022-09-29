@@ -14,25 +14,22 @@ Numpad0::
   Loop {
     DelayedSend("4")
     DelayedSend("5")
-    WitchCycle()
     bossCycleCount := BossCycle(bossCycleCount)
   }
   return
 
 Numpad1::
-  bossCycleCount := 0
-  cycleMax := 10
+  witchCycleCount := 0
+  cycleMax := 5
   Loop {
     ; Attempt to cycle bosses
-    WitchCycle()
-    ; Put on reroll set (Brew/MBrew)
-    DelayedSend("3")
+    witchCycleCount := WitchCycleWithCount(witchCycleCount, cycleMax)
     BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend("6")
     DelayedSend("7")
-    ; Wait for violin to stop moving
-    Delay(200)
+    ; ; Wait for violin to stop moving
+    ; Delay(200)
     ; Find and use violin
     FindViolin()
     DelayedSend("7")
@@ -41,8 +38,6 @@ Numpad1::
 
 WitchCycle() {
   if (HasWitchSpawned()) {
-    ; Put on WEM/WCM set
-    DelayedSend("1")
     DelayedSend("v")
     ScrollToTop()
     ; Cycle Witch
@@ -53,7 +48,37 @@ WitchCycle() {
   }
 }
 
+WitchCycleWithCount(witchCycleCount := 0, cycleMax := 4) {
+  if (HasWitchSpawned()) {
+    ; Put on WEM/WCM set
+    DelayedSend("1")
+    DelayedSend("v")
+    ScrollToTop()
+    ; Cycle Witch
+    ClickAndWaitForBoss(1781, 785)
+    witchCycleCount++
+
+    if (witchCycleCount >= cycleMax) {
+      ScrollToBottom()
+      DelayedClick(1742, 910)
+      DelayedSend("v")
+      DelayedClick(1491, 531)
+      DelayedClick(914, 470)
+      DelayedSend("v")
+      witchCycleCount := 0
+    }
+
+    ; Teleport home
+    DelayedSend("{Space}")
+    DelayedSend("v")
+    ; Put on reroll set (Brew/MBrew)
+    DelayedSend("3")
+  }
+  return witchCycleCount
+}
+
 BossCycle(bossCycleCount := 0, cycleMax := 2) {
+  WitchCycle()
   if (HasCentaurSpawned()) {
     DelayedSend("v")
     ScrollToTop()
@@ -83,7 +108,6 @@ BossCycle(bossCycleCount := 0, cycleMax := 2) {
     DelayedSend("2")
     ClickAndWaitForBoss(1761, 636)
     ; Hit the counter
-    ScrollToBottom()
     DelayedClick(1742, 910)
     DelayedSend("v")
     DelayedClick(1491, 531)
@@ -124,23 +148,14 @@ HasCentaurSpawned() {
 ClickAndWaitForBoss(x, y) {
   DelayedClick(x, y)
   DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
-  Delay(850)
+  Delay(900)
 }
 
 BrewDE() {
   DelayedSend("d")
   ScrollToTop()
-  if (CanBrew({x1: 1707, y1: 439, x2: 1811 , y2: 481})) {
-    DelayedClick(1758, 462)
-  }
+  DelayedClick(1758, 462)
   DelayedSend("d")
-}
-
-CanBrew(search_options: {}) {
-  brewButton = "|<BrewButton>0E0C07-000000$55.000000000Dw00000007y00000003z00000001kQzk3w7CAsCTs1y3b6TsC3X7lnXDw71lXstlby3UslwQsnUtk0T0CQNkQs0DU7CAzkQ01y3zsTsC00z1zwDw700TUzy0000000004"
-  has_found := BossSpawnedSearch(brewButton, search_options)
-  search_options := ""
-  return has_found
 }
 
 FindViolin() {
@@ -149,8 +164,6 @@ FindViolin() {
   if (resultObj) {
     X := resultObj.1.x, Y := resultObj.1.y
     DelayedClick(X, Y, 0)
-    ; Use Violin twice in case of build up
-    DelayedClick(A_ScreenWidth / 2, A_ScreenHeight / 2, 0)
     resultObj := ""
   }
   return
