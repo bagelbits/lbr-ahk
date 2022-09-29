@@ -5,8 +5,8 @@ SendMode Input ; Recommended for new scripts due to its superior speed and relia
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\node_modules
-#Include graphicsearch.ahk\export.ahk
 #Include %A_ScriptDir%\helpers
+
 #Include utils.ahk
 #Include bossCycle.ahk
 #Include brewing.ahk

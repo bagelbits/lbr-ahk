@@ -1,3 +1,5 @@
+#Include graphicsearch.ahk\export.ahk
+
 IsImagePresent(searchQuery, options) {
   ; #Include graphicsearch.ahk\export.ahk
 
