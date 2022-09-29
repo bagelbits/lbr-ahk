@@ -48,8 +48,8 @@ Numpad1::
   }
   return
 
-  Numpad9::
-    MsgBox, hotKeys.artifacts.blazingSkull
+Numpad9::
+  MsgBox, hotKeys.artifacts.blazingSkull
 
 #IfWinActive
 F11::
