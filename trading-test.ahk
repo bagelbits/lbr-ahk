@@ -8,15 +8,15 @@ SetWorkingDir, %A_ScriptDir%
 
 #IfWinActive Leaf Blower Revolution
 Numpad2::
-  DelayedSend('a')
+  DelayedSend("a")
   GemTradeLoop()
-  DelayedSend('a')
+  DelayedSend("a")
   Loop {
     if (TradesReady()) {
-      DelayedSend('a')
+      DelayedSend("a")
       CollectTrades()
       GemTradeLoop()
-      DelayedSend('a')
+      DelayedSend("a")
     }
   }
 
