@@ -6,6 +6,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
+
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
 #Include bossCycle.ahk
