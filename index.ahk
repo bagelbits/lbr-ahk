@@ -7,11 +7,16 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
+#Include %A_ScriptDir%\lib
+#Include yaml.ahk
+
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
 #Include bossCycle.ahk
 #Include brewing.ahk
 #Include artifact.ahk
+
+global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
@@ -25,6 +30,7 @@ Numpad0::
   return
 
 Numpad1::
+  ; TODO: Make use of static
   witchCycleCount := 0
   cycleMax := 5
   Loop {
@@ -41,6 +47,9 @@ Numpad1::
     DelayedSend("7")
   }
   return
+
+  Numpad9::
+    MsgBox, hotKeys.artifacts.blazingSkull
 
 #IfWinActive
 F11::
