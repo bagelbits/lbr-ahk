@@ -5,7 +5,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
-#Include utils.ahk
+#Include %A_ScriptDir%\utils.ahk
 
 
 ; TODO: Memoize boss data
