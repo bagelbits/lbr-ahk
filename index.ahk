@@ -20,7 +20,8 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
-Numpad0::{
+Numpad0::
+{
   Loop {
     DelayedSend("4")
     DelayedSend("5")
@@ -28,7 +29,8 @@ Numpad0::{
   }
 }
 
-Numpad1::{
+Numpad1::
+{
   Loop {
     ; Attempt to cycle bosses
     WitchCycleWithCount()
@@ -45,12 +47,14 @@ Numpad1::{
 }
 
 #IfWinActive
-F11::{
+F11::
+{
   Suspend
   Pause, Toggle, 1
 }
 
-F12::{
+F12::
+{
   Suspend
   Reload
 }

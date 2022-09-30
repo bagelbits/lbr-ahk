@@ -10,7 +10,8 @@ SetWorkingDir, %A_ScriptDir%
 #Include trading.ahk
 
 #IfWinActive Leaf Blower Revolution
-Numpad2::{
+Numpad2::
+{
   GemTradeLoop()
   tradesCollected := 0
   Loop {
@@ -25,22 +26,26 @@ Numpad2::{
   }
 }
 
-Numpad0::{
+Numpad0::
+{
   MsgBox % TradesReady()
 }
 
 #IfWinActive
-F11::{
+F11::
+{
   Suspend
   Pause, Toggle, 1
 }
 
-F12::{
+F12::
+{
   Suspend
   Reload
 }
 
-Esc::{
+Esc::
+{
   Suspend
   ExitApp ;Escape key will exit... place this at the bottom of the script
 }
