@@ -13,7 +13,8 @@ WitchCycle() {
   }
 }
 
-WitchCycleWithCount(witchCycleCount := 0, cycleMax := 4) {
+WitchCycleWithCount(cycleMax := 5) {
+  static witchCycleCount := 0
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
     DelayedSend("1")
@@ -39,10 +40,10 @@ WitchCycleWithCount(witchCycleCount := 0, cycleMax := 4) {
     ; Put on reroll set (Brew/MBrew)
     DelayedSend("3")
   }
-  return witchCycleCount
 }
 
-BossCycle(bossCycleCount := 0, cycleMax := 2) {
+BossCycle(cycleMax := 2) {
+  static bossCycleCount := 0
   WitchCycle()
   if (HasCentaurSpawned()) {
     DelayedSend("v")
@@ -90,7 +91,6 @@ BossCycle(bossCycleCount := 0, cycleMax := 2) {
       bossCycleCount := 0
     }
   }
-  return bossCycleCount
 }
 
 HasWitchSpawned() {
