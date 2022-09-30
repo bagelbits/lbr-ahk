@@ -3,6 +3,7 @@ artifacts:
   wind: "5"
   fruit: "6"
   violin: "7"
+  seedBag: "8"
 loadout:
   wemwcm: "1"
   damage: "2"
@@ -11,5 +12,6 @@ menu:
   areas: "v"
   brewing: "d"
   trading: "a"
+  leafscend: "f"
 trade:
   refresh: "``"

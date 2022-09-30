@@ -1,6 +1,7 @@
 GemTradeLoop() {
   static firstRun := true
   static tradesCollected := 0
+  static seedBagsToUse := -1
   if (!TradesReady() and !firstRun){
     return
   }
@@ -30,10 +31,11 @@ GemTradeLoop() {
   }
   DelayedSend("{Esc}")
   if (tradesCollected >= 13 and !firstRun) {
-    ; Leafscend()
-    ; RestockLeaves()
+    Leafscend()
+    seedBagsToUse := 15
     tradesCollected := tradesCollected - 13
   }
+  seedBagsToUse := RestockLeaves(seedBagsToUse)
   firstRun := false
 }
 

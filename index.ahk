@@ -17,8 +17,10 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #Include brewing.ahk
 #Include artifact.ahk
 #Include trading.ahk
+#Include leafscends.ahk
 
-global topMenuHotKeys = { cards: "{F5}" }
+global topMenuHotKeys = { gem:  "{F1}"
+                        , cards: "{F5}" }
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
