@@ -44,7 +44,7 @@ Numpad1::
     ; GemTradeLoop()
     BrewDE()
     ; Spawn fruit and use extra violins
-    DelayedSend(hotKeys.artifacts.enchantedFruit)
+    DelayedSend(hotKeys.artifacts.fruit)
     DelayedSend(hotKeys.artifacts.violin)
     ; Find and use violin
     FindViolin()
