@@ -33,8 +33,9 @@ NoMoreTrades() {
 
 GetGemTrades() {
   Delay()
-  graphicsearch_query := "|<Gem Trade>FA3A6D-000000$2.zzzzzU"
-  resultObj := graphicsearch.search(GraphicSearch_query)
+  gemQuery := "|<Gem Trade>FF0044-000000$5.zzzzzzy"
+  options := {x1: 285, y1: 204, x2: 2199, y2: 1173}
+  resultObj := graphicsearch.search(gemQuery, options)
   return resultObj
 }
 
