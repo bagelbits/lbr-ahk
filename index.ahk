@@ -16,26 +16,22 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include brewing.ahk
 #Include artifact.ahk
 
-global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
+; global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
-Numpad0::
-  bossCycleCount := 0
+Numpad0::{
   Loop {
     DelayedSend("4")
     DelayedSend("5")
-    bossCycleCount := BossCycle(bossCycleCount)
+    BossCycle()
   }
-  return
+}
 
-Numpad1::
-  ; TODO: Make use of static
-  witchCycleCount := 0
-  cycleMax := 5
+Numpad1::{
   Loop {
     ; Attempt to cycle bosses
-    witchCycleCount := WitchCycleWithCount(witchCycleCount, cycleMax)
+    WitchCycleWithCount()
     BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend("6")
@@ -46,15 +42,15 @@ Numpad1::
     FindViolin()
     DelayedSend("7")
   }
-  return
+}
 
 #IfWinActive
-F11::
+F11::{
   Suspend
   Pause, Toggle, 1
-  Return
+}
 
-F12::
+F12::{
   Suspend
   Reload
-  Return
+}
