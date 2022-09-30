@@ -52,9 +52,19 @@ Numpad1::
   }
 }
 
+; Gem trade testing
 Numpad2::
 {
   GemTradeLoop()
+}
+
+Numpad3::
+{
+  Leafscend()
+  seedBagsToUse := 15
+  Loop(seedBagsToUse != 0) {
+    seedBagsToUse :=RestockLeaves(seedBagsToUse)
+  }
 }
 
 #IfWinActive
