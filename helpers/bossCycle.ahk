@@ -109,7 +109,7 @@ ClickAndWaitForBoss(x, y) {
 }
 
 AttemptTranscendAll() {
-  DelayedSend(hotKeys.menu.cards)
+  DelayedSend(topMenuHotKeys.cards)
   ; Hit Transcend tab
   DelayedClick(661, 1202)
   ; Attempt to transcend all

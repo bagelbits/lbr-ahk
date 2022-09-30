@@ -18,6 +18,8 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #Include artifact.ahk
 #Include trading.ahk
 
+global topMenuHotKeys = { cards: "{F5}" }
+
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
@@ -49,9 +51,10 @@ Numpad1::
 
 Numpad2::
 {
-  Loop {
-    GemTradeLoop()
-  }
+  AttemptTranscendAll()
+  ; Loop {
+  ;   GemTradeLoop()
+  ; }
 }
 
 #IfWinActive
