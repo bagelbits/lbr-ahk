@@ -18,17 +18,8 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #IfWinActive Leaf Blower Revolution
 Numpad2::
 {
-  GemTradeLoop()
-  tradesCollected := 0
   Loop {
-    if (TradesReady()) {
-      tradesCollected := GemTradeLoop(tradesCollected)
-    }
-    if (tradesCollected >= 13) {
-      ; Leafscend()
-      ; RestockLeaves()
-      tradesCollected := tradesCollected - 13
-    }
+    GemTradeLoop()
   }
 }
 

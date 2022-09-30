@@ -1,6 +1,11 @@
-GemTradeLoop(tradesCollected := 0) {
+GemTradeLoop() {
+  static firstRun := true
+  static tradesCollected := 0
+  if (!TradesReady() and !firstRun){
+    return
+  }
+
   DelayedSend(hotKeys.menu.trading)
-  CollectTrades()
   ScrollToTop()
   Loop {
     if(TradesReady()) {
@@ -23,7 +28,12 @@ GemTradeLoop(tradesCollected := 0) {
     }
   }
   DelayedSend("{Esc}")
-  return tradesCollected
+  if (tradesCollected >= 13 and !firstRun) {
+    ; Leafscend()
+    ; RestockLeaves()
+    tradesCollected := tradesCollected - 13
+  }
+  firstRun := false
 }
 
 NoMoreTrades() {
@@ -33,7 +43,7 @@ NoMoreTrades() {
 
 GetGemTrades() {
   Delay()
-  gemQuery := "|<Gem Trade>FF0044-000000$5.zzzzzzy"
+  gemQuery := "|<Gem Trade>FF0044-000000$2.zzzzzU"
   options := {x1: 285, y1: 204, x2: 2199, y2: 1173}
   resultObj := graphicsearch.search(gemQuery, options)
   return resultObj

@@ -16,6 +16,7 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #Include bossCycle.ahk
 #Include brewing.ahk
 #Include artifact.ahk
+#Include trading.ahk
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
@@ -33,6 +34,7 @@ Numpad1::
   Loop {
     ; Attempt to cycle bosses
     WitchCycleWithCount()
+    GemTradeLoop()
     BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend(hotKeys.artifacts.enchantedFruit)
@@ -42,6 +44,13 @@ Numpad1::
     ; Find and use violin
     FindViolin()
     DelayedSend(hotKeys.artifacts.violin)
+  }
+}
+
+Numpad2::
+{
+  Loop {
+    GemTradeLoop()
   }
 }
 

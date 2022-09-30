@@ -10,7 +10,7 @@ loadout:
 menu:
   areas: "v"
   brewing: "d"
-  cards: "{F5}"
+  cards: "z"
   trading: "a"
 trade:
   refresh: "``"
