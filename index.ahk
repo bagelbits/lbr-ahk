@@ -44,8 +44,6 @@ Numpad1::
     ; Spawn fruit and use extra violins
     DelayedSend(hotKeys.artifacts.enchantedFruit)
     DelayedSend(hotKeys.artifacts.violin)
-    ; ; Wait for violin to stop moving
-    ; Delay(200)
     ; Find and use violin
     FindViolin()
     DelayedSend(hotKeys.artifacts.violin)
