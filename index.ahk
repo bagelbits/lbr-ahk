@@ -27,7 +27,8 @@ Numpad0::
   Loop {
     DelayedSend(hotKeys.artifacts.blazingSkull)
     DelayedSend(hotKeys.artifacts.wind)
-    GemTradeLoop()
+    ; Don't run this until we have leafscends
+    ; GemTradeLoop()
     BossCycle()
   }
 }
@@ -37,7 +38,8 @@ Numpad1::
   Loop {
     ; Attempt to cycle bosses
     WitchCycleWithCount()
-    GemTradeLoop()
+    ; Don't run this until we have leafscends
+    ; GemTradeLoop()
     BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend(hotKeys.artifacts.enchantedFruit)
@@ -52,10 +54,7 @@ Numpad1::
 
 Numpad2::
 {
-  gemTrades := GetGemTrades()
-  for index, trade in gemTrades {
-    graphicsearch.mouseTip(trade.x, trade.y)
-  }
+  GemTradeLoop()
 }
 
 #IfWinActive
