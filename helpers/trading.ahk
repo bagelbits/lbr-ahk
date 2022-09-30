@@ -26,6 +26,7 @@ GemTradeLoop() {
         break
       }
     }
+    DelayedClick(2020, 1138, 0)
   }
   DelayedSend("{Esc}")
   if (tradesCollected >= 13 and !firstRun) {
@@ -43,7 +44,7 @@ NoMoreTrades() {
 
 GetGemTrades() {
   Delay()
-  gemQuery := "|<Gem Trade>FF0044-000000$2.zzzzzU"
+  gemQuery := "|<Gem Trade>0x9C1539@1.00$2.zzzzzz2"
   options := {x1: 285, y1: 204, x2: 2199, y2: 1173}
   resultObj := graphicsearch.search(gemQuery, options)
   return resultObj
@@ -59,7 +60,6 @@ TradeBuyable(options) {
 BuyGemTrade(trade) {
   X := trade.x, Y := trade.y
   DelayedClick(2080, Y + 15)
-  DelayedClick(2020, 1138, 0)
 }
 
 TradesReady() {

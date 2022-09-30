@@ -27,6 +27,7 @@ Numpad0::
   Loop {
     DelayedSend(hotKeys.artifacts.blazingSkull)
     DelayedSend(hotKeys.artifacts.wind)
+    GemTradeLoop()
     BossCycle()
   }
 }
@@ -51,10 +52,10 @@ Numpad1::
 
 Numpad2::
 {
-  AttemptTranscendAll()
-  ; Loop {
-  ;   GemTradeLoop()
-  ; }
+  gemTrades := GetGemTrades()
+  for index, trade in gemTrades {
+    graphicsearch.mouseTip(trade.x, trade.y)
+  }
 }
 
 #IfWinActive
