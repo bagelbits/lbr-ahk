@@ -3,3 +3,14 @@ artifacts:
   wind: "5"
   fruit: "6"
   violin: "7"
+loadout:
+  wemwcm: "1"
+  damage: "2"
+  brew: "3"
+menu:
+  areas: "v"
+  brewing: "d"
+  cards: "{F5}"
+  trading: "a"
+trade:
+  refresh: "``"

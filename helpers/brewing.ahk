@@ -1,6 +1,6 @@
 BrewDE() {
   ; if (!AlchemyWindowOpen()) {
-    DelayedSend(menuHotKeys["brewing"])
+    DelayedSend(hotKeys.menu.brewing)
   ; }
   ScrollToTop()
   DelayedClick(1758, 462)

@@ -17,19 +17,6 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #Include brewing.ahk
 #Include artifact.ahk
 
-global artifactHotKeys := { blazingSkull: "4"
-                          , wind: "5"
-                          , enchantedFruit: "6"
-                          , violin: "7"}
-global loadoutHotKeys := { wemwcm: "1"
-                          , damage: "2"
-                          , brew: "3"}
-global menuHotKeys := { areas: "v"
-                      , brewing: "d"
-                      , cards: "{F5}"
-                      , trading: "a"}
-global tradeHotKeys := { refresh: "``" }
-
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
@@ -48,13 +35,13 @@ Numpad1::
     WitchCycleWithCount()
     BrewDE()
     ; Spawn fruit and use extra violins
-    DelayedSend(artifactHotKeys["enchantedFruit"])
-    DelayedSend(artifactHotKeys["violin"])
+    DelayedSend(hotKeys.artifacts.enchantedFruit)
+    DelayedSend(hotKeys.artifacts.violin)
     ; ; Wait for violin to stop moving
     ; Delay(200)
     ; Find and use violin
     FindViolin()
-    DelayedSend(artifactHotKeys["violin"])
+    DelayedSend(hotKeys.artifacts.violin)
   }
 }
 

@@ -1,6 +1,6 @@
 WitchCycle() {
   if (HasWitchSpawned()) {
-    DelayedSend(menuHotKeys["areas"])
+    DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
     ClickAndWaitForBoss(1781, 785)
@@ -14,8 +14,8 @@ WitchCycleWithCount(cycleMax := 5) {
   static witchCycleCount := 0
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
-    DelayedSend(loadoutHotKeys["wemwcm"])
-    DelayedSend(menuHotKeys["areas"])
+    DelayedSend(hotKeys.loadout.wemwcm)
+    DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
     ClickAndWaitForBoss(1781, 785)
@@ -27,7 +27,7 @@ WitchCycleWithCount(cycleMax := 5) {
       DelayedSend("{Esc}")
       DelayedClick(1491, 531)
       DelayedClick(914, 470)
-      DelayedSend(menuHotKeys["areas"])
+      DelayedSend(hotKeys.menu.areas)
       witchCycleCount := 0
     }
 
@@ -35,7 +35,7 @@ WitchCycleWithCount(cycleMax := 5) {
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
     ; Put on reroll set (Brew/MBrew)
-    DelayedSend(loadoutHotKeys["brew"])
+    DelayedSend(hotKeys.loadout.brew)
   }
 }
 
@@ -43,7 +43,7 @@ BossCycle(cycleMax := 2) {
   static bossCycleCount := 0
   WitchCycle()
   if (HasCentaurSpawned()) {
-    DelayedSend(menuHotKeys["areas"])
+    DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle other timer bosses
     Loop, 9 {
@@ -68,7 +68,7 @@ BossCycle(cycleMax := 2) {
     ; Terror Purple
     ClickAndWaitForBoss(1761, 486)
     ; Super Terror
-    DelayedSend(menuHotKeys["damage"])
+    DelayedSend(hotKeys.menu.damage)
     ClickAndWaitForBoss(1761, 636)
     ; Hit the counter
     DelayedClick(1742, 910)
@@ -76,8 +76,8 @@ BossCycle(cycleMax := 2) {
     DelayedClick(1491, 531)
     DelayedClick(914, 470)
     DelayedSend("{Esc}")
-    DelayedSend(loadoutHotKeys["wemwcm"])
-    DelayedSend(menuHotKeys["areas"])
+    DelayedSend(hotKeys.loadout.wemwcm)
+    DelayedSend(hotKeys.menu.areas)
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
@@ -109,7 +109,7 @@ ClickAndWaitForBoss(x, y) {
 }
 
 AttemptTranscendAll() {
-  DelayedSend(menuHotKeys["cards"])
+  DelayedSend(hotKeys.menu.cards)
   ; Hit Transcend tab
   DelayedClick(661, 1202)
   ; Attempt to transcend all

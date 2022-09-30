@@ -1,12 +1,12 @@
 GemTradeLoop(tradesCollected := 0) {
-  DelayedSend(menuHotKeys["trading"])
+  DelayedSend(hotKeys.menu.trading)
   CollectTrades()
   ScrollToTop()
   Loop {
     if(TradesReady()) {
       CollectTrades()
     }
-    DelayedSend(tradeHotKeys["refresh"])
+    DelayedSend(hotKeys.trade.refresh)
     if(NoMoreTrades()) {
       BoostAll()
       break

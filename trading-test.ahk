@@ -1,26 +1,19 @@
 #SingleInstance, Force
-SendMode Input
-SetWorkingDir, %A_ScriptDir%
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn UseUnsetLocal, Off
+SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
+#Include %A_ScriptDir%\lib
+#Include Yaml.ahk
+global hotKeys := Yaml("config\hotkeys.yaml")
+
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
 #Include trading.ahk
-
-global artifactHotKeys := { blazingSkull: "4"
-                          , wind: "5"
-                          , enchantedFruit: "6"
-                          , violin: "7"}
-global loadoutHotKeys := { wemwcm: "1"
-                          , damage: "2"
-                          , brew: "3"}
-global menuHotKeys := { areas: "v"
-                      , brewing: "d"
-                      , cards: "{F5}"
-                      , trading: "a"}
-global tradeHotKeys := { refresh: "``" }
 
 #IfWinActive Leaf Blower Revolution
 Numpad2::
