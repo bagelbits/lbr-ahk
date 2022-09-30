@@ -7,8 +7,8 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\node_modules
 #Include graphicsearch.ahk\export.ahk
 
-; #Include %A_ScriptDir%\lib
-; #Include Yaml.ahk
+#Include %A_ScriptDir%\lib
+#Include Yaml.ahk
 
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
@@ -16,7 +16,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include brewing.ahk
 #Include artifact.ahk
 
-; global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
+global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
 global artifactHotKeys := { blazingSkull: "4"
                           , wind: "5"
                           , enchantedFruit: "6"
@@ -35,7 +35,8 @@ global tradeHotKeys := { refresh: "``" }
 Numpad0::
 {
   Loop {
-    DelayedSend(artifactHotKeys["blazingSkull"])
+    ; DelayedSend(artifactHotKeys["blazingSkull"])
+    DelayedSend(hotKeys["artifacts"]["blazingSkull"])
     DelayedSend(artifactHotKeys["wind"])
     BossCycle()
   }
