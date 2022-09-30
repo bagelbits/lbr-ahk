@@ -23,6 +23,8 @@ global topMenuHotKeys = { gem:  "{F1}"
                         , cards: "{F5}" }
 
 ; TODO: Memoize boss data
+
+; Tower + Boss cycle
 #IfWinActive Leaf Blower Revolution
 Numpad0::
 {
@@ -35,6 +37,7 @@ Numpad0::
   }
 }
 
+; Witch + Violin farm
 Numpad1::
 {
   Loop {
@@ -58,6 +61,7 @@ Numpad2::
   GemTradeLoop()
 }
 
+; Leafscend testing
 Numpad3::
 {
   Leafscend()
