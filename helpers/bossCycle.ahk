@@ -3,7 +3,7 @@
 
 WitchCycle() {
   if (HasWitchSpawned()) {
-    DelayedSend("v")
+    DelayedSend(menuHotKeys["areas"])
     ScrollToTop()
     ; Cycle Witch
     ClickAndWaitForBoss(1781, 785)
@@ -17,8 +17,8 @@ WitchCycleWithCount(cycleMax := 5) {
   static witchCycleCount := 0
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
-    DelayedSend("1")
-    DelayedSend("v")
+    DelayedSend(loadoutHotKeys["wemwcm"])
+    DelayedSend(menuHotKeys["areas"])
     ScrollToTop()
     ; Cycle Witch
     ClickAndWaitForBoss(1781, 785)
@@ -30,7 +30,7 @@ WitchCycleWithCount(cycleMax := 5) {
       DelayedSend("{Esc}")
       DelayedClick(1491, 531)
       DelayedClick(914, 470)
-      DelayedSend("v")
+      DelayedSend(menuHotKeys["areas"])
       witchCycleCount := 0
     }
 
@@ -38,7 +38,7 @@ WitchCycleWithCount(cycleMax := 5) {
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
     ; Put on reroll set (Brew/MBrew)
-    DelayedSend("3")
+    DelayedSend(loadoutHotKeys["brew"])
   }
 }
 
@@ -46,7 +46,7 @@ BossCycle(cycleMax := 2) {
   static bossCycleCount := 0
   WitchCycle()
   if (HasCentaurSpawned()) {
-    DelayedSend("v")
+    DelayedSend(menuHotKeys["areas"])
     ScrollToTop()
     ; Cycle other timer bosses
     Loop, 9 {
@@ -71,7 +71,7 @@ BossCycle(cycleMax := 2) {
     ; Terror Purple
     ClickAndWaitForBoss(1761, 486)
     ; Super Terror
-    DelayedSend("2")
+    DelayedSend(menuHotKeys["damage"])
     ClickAndWaitForBoss(1761, 636)
     ; Hit the counter
     DelayedClick(1742, 910)
@@ -79,8 +79,8 @@ BossCycle(cycleMax := 2) {
     DelayedClick(1491, 531)
     DelayedClick(914, 470)
     DelayedSend("{Esc}")
-    DelayedSend("1")
-    DelayedSend("v")
+    DelayedSend(loadoutHotKeys["wemwcm"])
+    DelayedSend(menuHotKeys["areas"])
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
@@ -112,7 +112,7 @@ ClickAndWaitForBoss(x, y) {
 }
 
 AttemptTranscendAll() {
-  DelayedSend("{F5}")
+  DelayedSend(menuHotKeys["cards"])
   ; Hit Transcend tab
   DelayedClick(661, 1202)
   ; Attempt to transcend all
@@ -120,5 +120,5 @@ AttemptTranscendAll() {
   DelayedClick(1253, 539)
   DelayedClick(952, 399)
   DelayedClick(1253, 539)
-  DelayedSend("{F5}")
+  DelayedSend("{Esc}")
 }

@@ -2,14 +2,14 @@
 #Warn  ; Enable warnings to assist with detecting common errors.
 
 GemTradeLoop(tradesCollected := 0) {
-  DelayedSend("a")
+  DelayedSend(menuHotKeys["trading"])
   CollectTrades()
   ScrollToTop()
   Loop {
     if(TradesReady()) {
       CollectTrades()
     }
-    DelayedSend("``")
+    DelayedSend(tradeHotKeys["refresh"])
     if(NoMoreTrades()) {
       BoostAll()
       break
@@ -56,10 +56,9 @@ BuyGemTrade(trade) {
 
 TradesReady() {
   ; Check for notification
-  withoutMenuQuery := "|<Trade ready>FF0000-000000$17.zzzzzzzzzzzzzzzzzzzzzXzz7zyDzwTzszzlzzXzz7zzzzzzzszzlzzXzzzzzzzzzk"
-  withMenuQuery := "|<Trade ready With Menu>830000-000000$17.zzzzzzzzzzzzzzzzzzzzzzzz7zyDzwTzszzlzzXzz7zyDzzzzzzzlzzXzz7zzzzzzzzzzzz"
+  searchQuery := "|<Trade ready>FF0000-000000$17.zzzzzzzzzzzzzzzzzzzzzXzz7zyDzwTzszzlzzXzz7zzzzzzzszzlzzXzzzzzzzzzk"
   options := {x1: 1430, y1: 1288, x2: 1466, y2: 1327}
-  return IsImagePresent(withoutMenuQuery, options) or IsImagePresent(withMenuQuery, options)
+  return IsImagePresent(searchQuery, options)
 }
 
 CollectTrades() {

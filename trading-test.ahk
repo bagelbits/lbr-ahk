@@ -9,6 +9,19 @@ SetWorkingDir, %A_ScriptDir%
 #Include utils.ahk
 #Include trading.ahk
 
+global artifactHotKeys := { blazingSkull: "4"
+                          , wind: "5"
+                          , enchantedFruit: "6"
+                          , violin: "7"}
+global loadoutHotKeys := { wemwcm: "1"
+                          , damage: "2"
+                          , brew: "3"}
+global menuHotKeys := { areas: "v"
+                      , brewing: "d"
+                      , cards: "{F5}"
+                      , trading: "a"}
+global tradeHotKeys := { refresh: "``" }
+
 #IfWinActive Leaf Blower Revolution
 Numpad2::
 {
@@ -24,11 +37,6 @@ Numpad2::
       tradesCollected := tradesCollected - 13
     }
   }
-}
-
-Numpad0::
-{
-  MsgBox % TradesReady()
 }
 
 #IfWinActive

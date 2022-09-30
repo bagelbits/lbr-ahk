@@ -2,12 +2,12 @@
 #Warn  ; Enable warnings to assist with detecting common errors.
 
 BrewDE() {
-  if (!AlchemyWindowOpen()) {
-    DelayedSend("d")
-  }
+  ; if (!AlchemyWindowOpen()) {
+    DelayedSend(menuHotKeys["brewing"])
+  ; }
   ScrollToTop()
   DelayedClick(1758, 462)
-  DelayedSend("d")
+  DelayedSend("{Esc}")
 }
 
 AlchemyWindowOpen() {

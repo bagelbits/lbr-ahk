@@ -17,14 +17,26 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include artifact.ahk
 
 ; global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
+global artifactHotKeys := { blazingSkull: "4"
+                          , wind: "5"
+                          , enchantedFruit: "6"
+                          , violin: "7"}
+global loadoutHotKeys := { wemwcm: "1"
+                          , damage: "2"
+                          , brew: "3"}
+global menuHotKeys := { areas: "v"
+                      , brewing: "d"
+                      , cards: "{F5}"
+                      , trading: "a"}
+global tradeHotKeys := { refresh: "``" }
 
 ; TODO: Memoize boss data
 #IfWinActive Leaf Blower Revolution
 Numpad0::
 {
   Loop {
-    DelayedSend("4")
-    DelayedSend("5")
+    DelayedSend(artifactHotKeys["blazingSkull"])
+    DelayedSend(artifactHotKeys["wind"])
     BossCycle()
   }
 }
@@ -36,13 +48,13 @@ Numpad1::
     WitchCycleWithCount()
     BrewDE()
     ; Spawn fruit and use extra violins
-    DelayedSend("6")
-    DelayedSend("7")
+    DelayedSend(artifactHotKeys["enchantedFruit"])
+    DelayedSend(artifactHotKeys["violin"])
     ; ; Wait for violin to stop moving
     ; Delay(200)
     ; Find and use violin
     FindViolin()
-    DelayedSend("7")
+    DelayedSend(artifactHotKeys["violin"])
   }
 }
 
