@@ -1,6 +1,6 @@
 #SingleInstance, Force
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn  ; Enable warnings to assist with detecting common errors.
+#Warn UseUnsetLocal, Off
 SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
@@ -9,6 +9,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 #Include %A_ScriptDir%\lib
 #Include Yaml.ahk
+global hotKeys := Yaml("config\hotkeys.yaml")
 
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk
@@ -16,7 +17,6 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include brewing.ahk
 #Include artifact.ahk
 
-global hotKeys := Yaml(%A_ScriptDir%\config\hotkeys.yaml)
 global artifactHotKeys := { blazingSkull: "4"
                           , wind: "5"
                           , enchantedFruit: "6"
@@ -35,9 +35,8 @@ global tradeHotKeys := { refresh: "``" }
 Numpad0::
 {
   Loop {
-    ; DelayedSend(artifactHotKeys["blazingSkull"])
-    DelayedSend(hotKeys["artifacts"]["blazingSkull"])
-    DelayedSend(artifactHotKeys["wind"])
+    DelayedSend(hotKeys.artifacts.blazingSkull)
+    DelayedSend(hotKeys.artifacts.wind)
     BossCycle()
   }
 }

@@ -1,6 +1,3 @@
-#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn  ; Enable warnings to assist with detecting common errors.
-
 FindViolin() {
   graphicsearch_query := "|<Violin>0xC68862@1.00$2.y"
   resultObj := graphicsearch.search(graphicsearch_query)
