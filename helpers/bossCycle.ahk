@@ -50,8 +50,8 @@ BossCycle(cycleMax := 2) {
     }
 
     lastY := 0
-    for k, v in bosses.cycleBosses {
-      if lastY > bosses[v].teleportY {
+    for k, v in bosses.cycleBosses[""] {
+      if (lastY > bosses[v].teleportY) {
         ScrollToBottom()
       }
       if (bosses[v].loadout) {

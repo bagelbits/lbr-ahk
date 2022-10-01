@@ -64,8 +64,16 @@ Numpad2::
 ; Leafscend testing
 Numpad3::
 {
-  if (bosses.centaur.loadout) {
-    MsgBox, % hotKeys.loadout[bosses.superTerror.loadout]
+  for k, v in bosses.cycleBosses[""] {
+    MsgBox % v
+    ; if (lastY > bosses[v].teleportY) {
+    ;   ScrollToBottom()
+    ; }
+    ; if (bosses[v].loadout) {
+    ;   DelayedSend(hotKeys.loadout[bosses[v].loadout])
+    ; }
+    ; ClickAndWaitForBoss(teleportX, bosses[v].teleportY)
+    ; lastY := bosses[v].teleportY
   }
 }
 
