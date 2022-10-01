@@ -6,6 +6,8 @@ GemTradeLoop() {
   if (timeToSkip > 0 and timeToSkip < A_TickCount) {
     TimeSkip()
     timeToSkip := 0
+  } else if (timeToSkip > 0) {
+    DelayedSend(hotKeys.artifacts.seedBag)
   }
 
   if (!TradesReady() and !firstRun){
