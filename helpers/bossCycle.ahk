@@ -12,9 +12,11 @@ WitchCycle(cycleMax := 0) {
     ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
     witchCycleCount++
 
-    if (cycleMax != 0 and witchCycleCount >= cycleMax) {
-      HitTheCounter()
-      witchCycleCount := 0
+    if (cycleMax != 0) {
+      if (witchCycleCount >= cycleMax) {
+        HitTheCounter()
+        witchCycleCount := 0
+      }
       ; Put on reroll set (Brew/MBrew)
       DelayedSend(hotKeys.loadout.reroll)
     }
