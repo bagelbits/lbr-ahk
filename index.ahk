@@ -10,7 +10,6 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #Include %A_ScriptDir%\lib
 #Include Yaml.ahk
 global hotKeys := Yaml("config\hotkeys.yaml")
-global bosses := Yaml("config\bosses.yaml")
 
 #Include %A_ScriptDir%\helpers
 #Include utils.ahk

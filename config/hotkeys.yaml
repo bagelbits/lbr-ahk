@@ -5,9 +5,9 @@ artifacts:
   violin: "7"
   seedBag: "8"
 loadout:
-  wemwcm: "1"
+  wem: "1"
   damage: "2"
-  brew: "3"
+  reroll: "3"
 menu:
   areas: "v"
   brewing: "d"
