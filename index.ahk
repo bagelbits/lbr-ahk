@@ -39,7 +39,7 @@ Numpad1::
 {
   Loop {
     ; Attempt to cycle bosses
-    WitchCycleWithCount()
+    WitchCycle(5)
     BrewDE()
     ; Spawn fruit and use extra violins
     DelayedSend(hotKeys.artifacts.fruit)
