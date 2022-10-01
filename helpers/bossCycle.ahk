@@ -2,6 +2,7 @@ global teleportX := 1761
 
 WitchCycle() {
   if (HasWitchSpawned()) {
+    DelayedSend(hotKeys.loadout.wemwcm)
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
@@ -70,7 +71,7 @@ BossCycle(cycleMax := 2) {
     ; Terror Purple
     ClickAndWaitForBoss(teleportX, bosses.terrorPurple.teleportY)
     ; Super Terror
-    DelayedSend(hotKeys.loadout[bosses.loadout.superTerror])
+    DelayedSend(hotKeys.loadout[bosses.superTerror.loadout])
     ClickAndWaitForBoss(teleportX, bosses.superTerror.teleportY)
     ; Hit the counter
     DelayedClick(teleportX, bosses.counter.teleportY)

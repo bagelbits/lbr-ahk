@@ -65,12 +65,9 @@ Numpad2::
 ; Leafscend testing
 Numpad3::
 {
-  past := A_TickCount
-  Delay(2500)
-  now := A_TickCount
-  MsgBox, % past
-  MsgBox, % now
-  MsgBox, % now - past
+  if (bosses.centaur.loadout) {
+    MsgBox, % hotKeys.loadout[bosses.superTerror.loadout]
+  }
 }
 
 #IfWinActive
