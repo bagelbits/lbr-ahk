@@ -36,8 +36,8 @@ GemTradeLoop() {
     DelayedClick(2020, 1138, 0)
   }
   DelayedSend("{Esc}")
-  ; if (tradesCollected >= 13 and !firstRun) {
-  if (tradesCollected >= 13) {
+
+  if (tradesCollected >= 13 and !firstRun) {
     Leafscend()
     timeToSkip := A_TickCount + 1000 * 20 ; 20 seconds in the future
     tradesCollected := tradesCollected - 13
