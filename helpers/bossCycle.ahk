@@ -1,5 +1,5 @@
 global teleportX := 1761
-global bosses := Yaml("config\bosses.yaml")
+global bossConfig := Yaml("config\bosses.yaml")
 
 WitchCycle(cycleMax := 0) {
   static witchCycleCount := 0
@@ -9,7 +9,7 @@ WitchCycle(cycleMax := 0) {
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
-    ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
+    ClickAndWaitForBoss(teleportX, bossConfig.witch.teleportY)
     witchCycleCount++
 
     if (cycleMax != 0) {
@@ -37,15 +37,15 @@ BossCycle(cycleMax := 2) {
     ; Cycle other timer bosses
     scrolls := [9, -1]
     lastY := A_ScreenHeight
-    for k, v in bosses.cycleBosses[""] {
-      if (lastY >= bosses[v].teleportY) {
+    for k, v in bossConfig.cycleBosses[""] {
+      if (lastY >= bossConfig[v].teleportY) {
         ScrollDown(scrolls.RemoveAt(1))
       }
-      if (bosses[v].loadout) {
-        DelayedSend(hotKeys.loadout[bosses[v].loadout])
+      if (bossConfig[v].loadout) {
+        DelayedSend(hotKeys.loadout[bossConfig[v].loadout])
       }
-      ClickAndWaitForBoss(teleportX, bosses[v].teleportY)
-      lastY := bosses[v].teleportY
+      ClickAndWaitForBoss(teleportX, bossConfig[v].teleportY)
+      lastY := bossConfig[v].teleportY
     }
 
     HitTheCounter()
@@ -62,11 +62,11 @@ BossCycle(cycleMax := 2) {
 }
 
 HasWitchSpawned() {
-  return IsImagePresent(bosses.witch.search.query, bosses.witch.search.options)
+  return IsImagePresent(bossConfig.witch.search.query, bossConfig.witch.search.options)
 }
 
 HasCentaurSpawned() {
-  return IsImagePresent(bosses.centaur.search.query, bosses.centaur.search.options)
+  return IsImagePresent(bossConfig.centaur.search.query, bossConfig.centaur.search.options)
 }
 
 ClickAndWaitForBoss(x, y) {
@@ -80,7 +80,7 @@ HitTheCounter() {
     DelayedSend(hotKeys.menu.areas)
   }
   ScrollToBottom()
-  DelayedClick(teleportX, bosses.counter.teleportY)
+  DelayedClick(teleportX, bossConfig.counter.teleportY)
   DelayedSend("{Esc}")
   DelayedClick(1491, 531)
   DelayedClick(914, 470)

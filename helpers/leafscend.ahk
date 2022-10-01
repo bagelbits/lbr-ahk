@@ -1,16 +1,19 @@
+global leafscendConfig := Yaml("config\hotkeys.yaml")
+
 LeafscendAndTimeskip(tradesCollected) {
   static timeToSkip := 0
-  maxTradesPerLeafscend := 13
 
   if (timeToSkip > 0 and timeToSkip < A_TickCount) {
     TimeSkip()
     timeToSkip := 0
   }
 
-  if (tradesCollected >= maxTradesPerLeafscend) {
+  ; Only leafscend when we hit max trades and we're not already
+  ; to time skip
+  if (timeToSkip == 0 and tradesCollected >= leafscendConfig.maxTrades) {
     Leafscend()
     timeToSkip := A_TickCount + 1000 * 20 ; 20 seconds in the future
-    tradesCollected := tradesCollected - 13
+    tradesCollected := tradesCollected - leafscendConfig.maxTrades
   }
   return tradesCollected
 }
