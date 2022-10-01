@@ -52,6 +52,16 @@ Delay(Ms:=75) {
   Sleep Ms
 }
 
+ScrollDown(numScrolls) {
+  if (numScrolls == -1) {
+    ScrollToBottom()
+  } else {
+    Loop, %numScrolls {
+      DelayedSend("{WheelDown}")
+    }
+  }
+}
+
 ScrollToTop(){
   DelayedSend("{Ctrl Down}")
   DelayedSend("{WheelUp}")

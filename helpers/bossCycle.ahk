@@ -1,20 +1,7 @@
 global teleportX := 1761
 global bosses := Yaml("config\bosses.yaml")
 
-WitchCycle() {
-  if (HasWitchSpawned()) {
-    DelayedSend(hotKeys.loadout.wem)
-    DelayedSend(hotKeys.menu.areas)
-    ScrollToTop()
-    ; Cycle Witch
-    ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
-    ; Teleport home
-    DelayedSend("{Space}")
-    DelayedSend("{Esc}")
-  }
-}
-
-WitchCycleWithCount(cycleMax := 5) {
+WitchCycle(cycleMax := 0) {
   static witchCycleCount := 0
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
@@ -25,16 +12,16 @@ WitchCycleWithCount(cycleMax := 5) {
     ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
     witchCycleCount++
 
-    if (witchCycleCount >= cycleMax) {
+    if (cycleMax != 0 and witchCycleCount >= cycleMax) {
       HitTheCounter()
       witchCycleCount := 0
+      ; Put on reroll set (Brew/MBrew)
+      DelayedSend(hotKeys.loadout.reroll)
     }
 
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
-    ; Put on reroll set (Brew/MBrew)
-    DelayedSend(hotKeys.loadout.reroll)
   }
 }
 
@@ -49,10 +36,11 @@ BossCycle(cycleMax := 2) {
       DelayedSend("{WheelDown}")
     }
 
+    scrolls := [9, -1]
     lastY := 0
     for k, v in bosses.cycleBosses[""] {
-      if (lastY > bosses[v].teleportY) {
-        ScrollToBottom()
+      if lastY >= bosses[v].teleportY {
+        ScrollDown(scrolls.RemoveAt())
       }
       if (bosses[v].loadout) {
         DelayedSend(hotKeys.loadout[bosses[v].loadout])
