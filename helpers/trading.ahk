@@ -1,18 +1,5 @@
-GemTradeLoop() {
-  static firstRun := true
+GemTradeLoop(shouldLeafscend := false) {
   static tradesCollected := 0
-  static timeToSkip := 0
-
-  if (timeToSkip > 0 and timeToSkip < A_TickCount) {
-    TimeSkip()
-    timeToSkip := 0
-  } else if (timeToSkip > 0) {
-    DelayedSend(hotKeys.artifacts.seedBag)
-  }
-
-  if (!TradesReady() and !firstRun){
-    return
-  }
 
   DelayedSend(hotKeys.menu.trading)
   ScrollToTop()
@@ -39,12 +26,9 @@ GemTradeLoop() {
   }
   DelayedSend("{Esc}")
 
-  if (tradesCollected >= 13 and !firstRun) {
-    Leafscend()
-    timeToSkip := A_TickCount + 1000 * 20 ; 20 seconds in the future
-    tradesCollected := tradesCollected - 13
+  if (shouldLeafscend) {
+    tradesCollected := LeafscendAndTimeskip(tradesCollected)
   }
-  firstRun := false
 }
 
 NoMoreTrades() {

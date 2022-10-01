@@ -1,3 +1,21 @@
+LeafscendAndTimeskip(tradesCollected) {
+  static timeToSkip := 0
+  maxTradesPerLeafscend := 13
+
+  DelayedSend(hotKeys.artifacts.seedBag)
+  if (timeToSkip > 0 and timeToSkip < A_TickCount) {
+    TimeSkip()
+    timeToSkip := 0
+  }
+
+  if (tradesCollected >= maxTradesPerLeafscend) {
+    Leafscend()
+    timeToSkip := A_TickCount + 1000 * 20 ; 20 seconds in the future
+    tradesCollected := tradesCollected - 13
+  }
+  return tradesCollected
+}
+
 Leafscend() {
   DelayedSend(hotKeys.menu.leafscend)
   ; L1 tab
