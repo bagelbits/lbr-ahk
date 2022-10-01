@@ -1,7 +1,5 @@
 BrewDE() {
-  ; if (!AlchemyWindowOpen()) {
-    DelayedSend(hotKeys.menu.brewing)
-  ; }
+  DelayedSend(hotKeys.menu.brewing)
   ScrollToTop()
   DelayedClick(1758, 462)
   DelayedSend("{Esc}")

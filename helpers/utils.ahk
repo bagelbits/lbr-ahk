@@ -56,7 +56,7 @@ ScrollDown(numScrolls) {
   if (numScrolls == -1) {
     ScrollToBottom()
   } else {
-    Loop, %numScrolls {
+    Loop, % numScrolls {
       DelayedSend("{WheelDown}")
     }
   }

@@ -37,6 +37,7 @@ Numpad0::
 ; Witch + Violin farm
 Numpad1::
 {
+  DelayedSend(hotKeys.loadout.reroll)
   Loop {
     ; Attempt to cycle bosses
     WitchCycle(5)
@@ -64,17 +65,7 @@ Numpad2::
 ; Leafscend testing
 Numpad3::
 {
-  for k, v in bosses.cycleBosses[""] {
-    MsgBox % v
-    ; if (lastY > bosses[v].teleportY) {
-    ;   ScrollToBottom()
-    ; }
-    ; if (bosses[v].loadout) {
-    ;   DelayedSend(hotKeys.loadout[bosses[v].loadout])
-    ; }
-    ; ClickAndWaitForBoss(teleportX, bosses[v].teleportY)
-    ; lastY := bosses[v].teleportY
-  }
+  HitTheCounter()
 }
 
 #IfWinActive
