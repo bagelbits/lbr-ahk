@@ -31,11 +31,8 @@ BossCycle(cycleMax := 2) {
   if (HasCentaurSpawned()) {
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
-    ; Cycle other timer bosses
-    Loop, 9 {
-      DelayedSend("{WheelDown}")
-    }
 
+    ; Cycle other timer bosses
     scrolls := [9, -1]
     lastY := 0
     for k, v in bosses.cycleBosses[""] {
@@ -48,6 +45,7 @@ BossCycle(cycleMax := 2) {
       ClickAndWaitForBoss(teleportX, bosses[v].teleportY)
       lastY := bosses[v].teleportY
     }
+
     HitTheCounter()
     ; Teleport home
     DelayedSend("{Space}")
