@@ -23,8 +23,6 @@ global bosses := Yaml("config\bosses.yaml")
 global topMenuHotKeys = { gem:  "{F1}"
                         , cards: "{F5}" }
 
-; TODO: Memoize boss data
-
 ; Tower + Boss cycle
 #IfWinActive Leaf Blower Revolution
 Numpad0::

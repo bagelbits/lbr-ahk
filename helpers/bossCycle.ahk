@@ -1,9 +1,11 @@
+global teleportX := 1761
+
 WitchCycle() {
   if (HasWitchSpawned()) {
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
-    ClickAndWaitForBoss(1761, 785)
+    ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
@@ -18,12 +20,12 @@ WitchCycleWithCount(cycleMax := 5) {
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
     ; Cycle Witch
-    ClickAndWaitForBoss(1761, 785)
+    ClickAndWaitForBoss(teleportX, bosses.witch.teleportY)
     witchCycleCount++
 
     if (witchCycleCount >= cycleMax) {
       ScrollToBottom()
-      DelayedClick(1742, 910)
+      DelayedClick(teleportX, bosses.counter.teleportY)
       DelayedSend("{Esc}")
       DelayedClick(1491, 531)
       DelayedClick(914, 470)
@@ -50,28 +52,28 @@ BossCycle(cycleMax := 2) {
       DelayedSend("{WheelDown}")
     }
     ; Centaur
-    ClickAndWaitForBoss(1761, 336)
+    ClickAndWaitForBoss(teleportX, bosses.centaur.teleportY)
     ; Vile Creature
-    ClickAndWaitForBoss(1761, 476)
+    ClickAndWaitForBoss(teleportX, bosses.vileCreatrue.teleportY)
     ; Air Elemental
-    ClickAndWaitForBoss(1761, 626)
-    ; Spark Bubble v
-    ClickAndWaitForBoss(1761, 766)
+    ClickAndWaitForBoss(teleportX, bosses.airElemental.teleportY)
+    ; Spark Bubble
+    ClickAndWaitForBoss(teleportX, bosses.sparkBubble.teleportY)
     ; Terror Blue
-    ClickAndWaitForBoss(1761, 906)
+    ClickAndWaitForBoss(teleportX, bosses.terrorBlue.teleportY)
     ; Terror Green
-    ClickAndWaitForBoss(1761, 1046)
+    ClickAndWaitForBoss(teleportX, bosses.terrorGreen.teleportY)
     ; Scroll again
     ScrollToBottom()
     ; Terror Red
-    ClickAndWaitForBoss(1761, 346)
+    ClickAndWaitForBoss(teleportX, bosses.terrorRed.teleportY)
     ; Terror Purple
-    ClickAndWaitForBoss(1761, 486)
+    ClickAndWaitForBoss(teleportX, bosses.terrorPurple.teleportY)
     ; Super Terror
-    DelayedSend(hotKeys.menu.damage)
-    ClickAndWaitForBoss(1761, 636)
+    DelayedSend(hotKeys.loadout[bosses.loadout.superTerror])
+    ClickAndWaitForBoss(teleportX, bosses.superTerror.teleportY)
     ; Hit the counter
-    DelayedClick(1742, 910)
+    DelayedClick(teleportX, bosses.counter.teleportY)
     DelayedSend("{Esc}")
     DelayedClick(1491, 531)
     DelayedClick(914, 470)
