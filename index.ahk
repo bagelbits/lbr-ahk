@@ -17,7 +17,7 @@ global hotKeys := Yaml("config\hotkeys.yaml")
 #Include brewing.ahk
 #Include artifact.ahk
 #Include trading.ahk
-#Include leafscends.ahk
+#Include leafscend.ahk
 
 global topMenuHotKeys = { gem:  "{F1}"
                         , cards: "{F5}" }
@@ -26,11 +26,11 @@ global topMenuHotKeys = { gem:  "{F1}"
 #IfWinActive Leaf Blower Revolution
 Numpad0::
 {
+  artifactsToSpam = ["blazingSkull", "wind"]
   Loop {
-    DelayedSend(hotKeys.artifacts.blazingSkull)
-    DelayedSend(hotKeys.artifacts.wind)
+    SpamArtifacts(artifactsToSpam)
     BossCycle()
-    ; GemTradeLoop()
+    ; GemTradeLoop(artifactsToSpam)
   }
 }
 
@@ -38,16 +38,13 @@ Numpad0::
 Numpad1::
 {
   DelayedSend(hotKeys.loadout.reroll)
+  artifactsToSpam = ["fruit", "violin"]
   Loop {
     ; Attempt to cycle bosses
     WitchCycle(5)
     BrewDE()
-    ; Spawn fruit and use extra violins
-    DelayedSend(hotKeys.artifacts.fruit)
-    DelayedSend(hotKeys.artifacts.violin)
-    ; Find and use violin
-    FindViolin()
-    DelayedSend(hotKeys.artifacts.violin)
+    SpamArtifacts(artifactsToSpam)
+    FindAndUseViolin()
   }
 }
 

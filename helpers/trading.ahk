@@ -1,4 +1,4 @@
-GemTradeLoop(shouldLeafscend := false) {
+GemTradeLoop(artifactsToSpam, shouldLeafscend := false) {
   static tradesCollected := 0
 
   DelayedSend(hotKeys.menu.trading)
@@ -8,6 +8,7 @@ GemTradeLoop(shouldLeafscend := false) {
       CollectTrades()
     }
     DelayedSend(hotKeys.trade.refresh)
+    SpamArtifacts(artifactsToSpam)
     if(NoMoreTrades()) {
       BoostAll()
       break

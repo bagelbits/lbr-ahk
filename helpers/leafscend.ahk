@@ -2,7 +2,6 @@ LeafscendAndTimeskip(tradesCollected) {
   static timeToSkip := 0
   maxTradesPerLeafscend := 13
 
-  DelayedSend(hotKeys.artifacts.seedBag)
   if (timeToSkip > 0 and timeToSkip < A_TickCount) {
     TimeSkip()
     timeToSkip := 0
