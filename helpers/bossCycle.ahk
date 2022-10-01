@@ -76,7 +76,7 @@ ClickAndWaitForBoss(x, y) {
 }
 
 HitTheCounter() {
-  if (!AreasWindowOpen()) {
+  if (!MenuOpen("areas")) {
     DelayedSend(hotKeys.menu.areas)
   }
   ScrollToBottom()
@@ -99,10 +99,4 @@ AttemptTranscendAll() {
   DelayedClick(952, 399)
   DelayedClick(1253, 539)
   DelayedSend("{Esc}")
-}
-
-AreasWindowOpen() {
-  areasWindow := "|<Areas Window>0xFFFFFF@1.00$71.0000000000000000000000003zU0000000007z0000000000Dy0000000000Tw000000000D07UTzk07zU0S0D0zzU0Dz00w0S1zz00Ty01s0w3zy00zw03zzs7U3kS1zVbzzkD07Uw3z3DzzUS0D1s7y6Tzz0w0S3kDwAw0S1s007zU0Ns0w3k00Dz00nk1s7U00Ty01bU3kD000zw03D07US001zs06S0D0w000Dz00w0S1s000Ty01s0w3k000zw03k1s7U001zs0000000000000000000000001"
-  search_options := {x1: 312, y1: 229, x2: 469 , y2: 269}
-  return IsImagePresent(areasWindow, search_options)
 }

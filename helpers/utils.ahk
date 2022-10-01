@@ -1,3 +1,8 @@
+MenuOpen(menuName) {
+  Delay()
+  return IsImagePresent(menuConfig[menuName].search.query, menuConfig[menuName].search.options)
+}
+
 IsImagePresent(searchQuery, options) {
   ; #Include graphicsearch.ahk\export.ahk
 
