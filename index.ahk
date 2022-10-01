@@ -31,9 +31,10 @@ Numpad0::
   Loop {
     DelayedSend(hotKeys.artifacts.blazingSkull)
     DelayedSend(hotKeys.artifacts.wind)
+    DelayedSend(hotKeys.artifacts.seedBag)
     ; Don't run this until we have leafscends
-    ; GemTradeLoop()
     BossCycle()
+    GemTradeLoop()
   }
 }
 
