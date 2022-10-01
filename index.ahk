@@ -58,17 +58,23 @@ Numpad1::
 ; Gem trade testing
 Numpad2::
 {
-  GemTradeLoop()
+  Loop {
+    DelayedSend(hotKeys.artifacts.blazingSkull)
+    DelayedSend(hotKeys.artifacts.wind)
+    DelayedSend(hotKeys.artifacts.seedBag)
+    GemTradeLoop()
+  }
 }
 
 ; Leafscend testing
 Numpad3::
 {
-  Leafscend()
-  seedBagsToUse := 15
-  While(seedBagsToUse != 0) {
-    seedBagsToUse :=RestockLeaves(seedBagsToUse)
-  }
+  past := A_TickCount
+  Delay(2500)
+  now := A_TickCount
+  MsgBox, % past
+  MsgBox, % now
+  MsgBox, % now - past
 }
 
 #IfWinActive
