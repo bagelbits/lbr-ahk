@@ -95,8 +95,8 @@ AttemptTranscendAll() {
   DelayedClick(661, 1202)
   ; Attempt to transcend all
   DelayedClick(482, 399)
-  DelayedClick(1253, 539)
+  DelayedSend("{Space}")
   DelayedClick(952, 399)
-  DelayedClick(1253, 539)
+  DelayedSend("{Space}"))
   DelayedSend("{Esc}")
 }
