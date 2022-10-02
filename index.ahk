@@ -31,7 +31,7 @@ Numpad0::
   Loop {
     timeToTrade := WitchCycle()
     if (timeToSkip == 0) {
-      ; BossCycle()
+      BossCycle()
     } else {
       SpamArtifacts(["seedBag"])
     }
