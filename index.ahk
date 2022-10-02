@@ -18,7 +18,6 @@ global menuConfig := Yaml("config\menu.yaml")
 #Include brewing.ahk
 #Include artifact.ahk
 #Include trading.ahk
-#Include leafscend.ahk
 
 global topMenuHotKeys = { gem:  "{F1}"
                         , cards: "{F5}" }
@@ -28,10 +27,15 @@ global topMenuHotKeys = { gem:  "{F1}"
 Numpad0::
 {
   artifactsToSpam := ["blazingSkull", "wind"]
+  timeToSkip := 0
   Loop {
+    if (timeToSkip == 0) {
+      BossCycle()
+    } else {
+      SpamArtifacts(["seedBag"])
+    }
     SpamArtifacts(artifactsToSpam)
-    BossCycle()
-    GemTradeLoop()
+    timeToSkip := GemTradeLoop(true)
   }
 }
 
@@ -39,13 +43,14 @@ Numpad0::
 Numpad1::
 {
   DelayedSend(hotKeys.loadout.reroll)
-  artifactsToSpam := ["fruit", "violin"]
+  artifactsToSpam := ["fruit", "violin", "seedBag"]
   Loop {
-    ; Attempt to cycle bosses
+    ; Attempt to cycle bosses5
     WitchCycle(5)
     BrewDE()
     SpamArtifacts(artifactsToSpam)
     FindAndUseViolin()
+    GemTradeLoop(true)
   }
 }
 
@@ -62,7 +67,7 @@ Numpad2::
 ; Leafscend testing
 Numpad3::
 {
-  HitTheCounter()
+  MsgBox, % leafscendConfig.maxTrades
 }
 
 #IfWinActive

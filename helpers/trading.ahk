@@ -1,8 +1,11 @@
+global leafscendConfig := Yaml("config\leafscend.yaml")
+
 GemTradeLoop(shouldLeafscend := false) {
   static firstRun := true
   static tradesCollected := 0
+  static timeToSkip := 0
 
-  if(TradesReady() or firstRun) {
+  if((TradesReady() or firstRun) and timeToSkip == 0) {
     DelayedSend(hotKeys.menu.trading)
     ScrollToTop()
     Loop {
@@ -30,9 +33,21 @@ GemTradeLoop(shouldLeafscend := false) {
   }
 
   if (shouldLeafscend) {
-    tradesCollected := LeafscendAndTimeskip(tradesCollected)
+    ; Only leafscend when we hit max trades and we're not already
+    ; to time skip
+    if (timeToSkip == 0 and tradesCollected >= leafscendConfig.maxTrades) {
+      Leafscend()
+      timeToSkip := A_TickCount + 1000 * 15 ; 15 seconds in the future
+      tradesCollected -= leafscendConfig.maxTrades
+    }
+
+    if (timeToSkip > 0 and timeToSkip < A_TickCount) {
+      TimeSkip()
+      timeToSkip := 0
+    }
   }
   firstRun := false
+  return timeToSkip
 }
 
 NoMoreTrades() {
@@ -73,4 +88,27 @@ CollectTrades() {
 
 BoostAll() {
   DelayedClick(1691, 1125)
+}
+
+Leafscend() {
+  DelayedSend(hotKeys.menu.leafscend)
+  ; L1 tab
+  DelayedClick(434, 1211)
+  ; Turn on L1
+  DelayedClick(827, 1129)
+  Delay(1000)
+  ; Turn off L1
+  DelayedClick(1075, 1134)
+  DelayedSend("{Esc}")
+}
+
+TimeSkip() {
+  DelayedSend(topMenuHotKeys.gem)
+  ; Click Time travel tab
+  DelayedClick(972, 1211)
+  ; Buy 30m skip
+  DelayedClick(1637, 335)
+  ; Use 30m skip
+  DelayedClick(1804, 335)
+  DelayedSend("{Esc}")
 }
