@@ -27,11 +27,11 @@ global topMenuHotKeys = { gem:  "{F1}"
 #IfWinActive Leaf Blower Revolution
 Numpad0::
 {
-  artifactsToSpam = ["blazingSkull", "wind"]
+  artifactsToSpam := ["blazingSkull", "wind"]
   Loop {
     SpamArtifacts(artifactsToSpam)
     BossCycle()
-    ; GemTradeLoop(artifactsToSpam)
+    GemTradeLoop()
   }
 }
 
@@ -39,7 +39,7 @@ Numpad0::
 Numpad1::
 {
   DelayedSend(hotKeys.loadout.reroll)
-  artifactsToSpam = ["fruit", "violin"]
+  artifactsToSpam := ["fruit", "violin"]
   Loop {
     ; Attempt to cycle bosses
     WitchCycle(5)
@@ -52,11 +52,10 @@ Numpad1::
 ; Gem trade testing
 Numpad2::
 {
+  artifactsToSpam := ["blazingSkull", "wind", "seedBag"]
   Loop {
-    DelayedSend(hotKeys.artifacts.blazingSkull)
-    DelayedSend(hotKeys.artifacts.wind)
-    DelayedSend(hotKeys.artifacts.seedBag)
-    GemTradeLoop()
+    SpamArtifacts(artifactsToSpam)
+    ; GemTradeLoop()
   }
 }
 

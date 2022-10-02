@@ -1,35 +1,38 @@
-GemTradeLoop(artifactsToSpam, shouldLeafscend := false) {
+GemTradeLoop(shouldLeafscend := false) {
+  static firstRun := true
   static tradesCollected := 0
 
-  DelayedSend(hotKeys.menu.trading)
-  ScrollToTop()
-  Loop {
-    if(TradesReady()) {
-      CollectTrades()
-    }
-    DelayedSend(hotKeys.trade.refresh)
-    SpamArtifacts(artifactsToSpam)
-    if(NoMoreTrades()) {
-      BoostAll()
-      break
-    }
-    gemTrades := GetGemTrades()
-    for index, trade in gemTrades {
-      searchOptions := {x1: 2005, y1: trade.y - 23, x2: 2142, y2: trade.y + 22}
-      if (TradeBuyable(searchOptions)) {
-        BuyGemTrade(trade)
-        tradesCollected++
-      } else {
+  if(TradesReady() or firstRun) {
+    DelayedSend(hotKeys.menu.trading)
+    ScrollToTop()
+    Loop {
+      if(TradesReady()) {
+        CollectTrades()
+      }
+      DelayedSend(hotKeys.trade.refresh)
+      if(NoMoreTrades()) {
+        BoostAll()
         break
       }
+      gemTrades := GetGemTrades()
+      for index, trade in gemTrades {
+        searchOptions := {x1: 2005, y1: trade.y - 23, x2: 2142, y2: trade.y + 22}
+        if (TradeBuyable(searchOptions)) {
+          BuyGemTrade(trade)
+          tradesCollected++
+        } else {
+          break
+        }
+      }
+      DelayedClick(2020, 1138, 0)
     }
-    DelayedClick(2020, 1138, 0)
+    DelayedSend("{Esc}")
   }
-  DelayedSend("{Esc}")
 
   if (shouldLeafscend) {
     tradesCollected := LeafscendAndTimeskip(tradesCollected)
   }
+  firstRun := false
 }
 
 NoMoreTrades() {
