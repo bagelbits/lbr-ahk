@@ -1,11 +1,10 @@
 global leafscendConfig := Yaml("config\leafscend.yaml")
 
-GemTradeLoop(shouldLeafscend := false) {
+GemTradeLoop(timeToTrade, shouldLeafscend := false) {
   static firstRun := true
   static tradesCollected := 0
   static timeToSkip := 0
-
-  if((TradesReady() or firstRun) and timeToSkip == 0) {
+  if((TradesReady() or firstRun) and timeToTrade) {
     DelayedSend(hotKeys.menu.trading)
     ScrollToTop()
     Loop {

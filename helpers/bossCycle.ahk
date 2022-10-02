@@ -3,6 +3,7 @@ global bossConfig := Yaml("config\bosses.yaml")
 
 WitchCycle(cycleMax := 1) {
   static witchCycleCount := 0
+  timeToTrade := false
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
     DelayedSend(hotKeys.loadout.wem)
@@ -16,6 +17,7 @@ WitchCycle(cycleMax := 1) {
       if (witchCycleCount >= cycleMax) {
         HitTheCounter()
         witchCycleCount := 0
+        timeToTrade := true
       }
       ; Put on reroll set (Brew/MBrew)
       DelayedSend(hotKeys.loadout.reroll)
@@ -25,11 +27,13 @@ WitchCycle(cycleMax := 1) {
     DelayedSend("{Space}")
     DelayedSend("{Esc}")
   }
+  return timeToTrade
 }
 
 BossCycle(cycleMax := 2) {
   static bossCycleCount := 0
   if (HasCentaurSpawned()) {
+    DelayedSend(hotKeys.loadout.wem)
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
 

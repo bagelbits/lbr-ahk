@@ -29,14 +29,14 @@ Numpad0::
   artifactsToSpam := ["blazingSkull", "wind"]
   timeToSkip := 0
   Loop {
-    WitchCycle()
+    timeToTrade := WitchCycle()
     if (timeToSkip == 0) {
-      BossCycle()
+      ; BossCycle()
     } else {
       SpamArtifacts(["seedBag"])
     }
     SpamArtifacts(artifactsToSpam)
-    timeToSkip := GemTradeLoop(true)
+    timeToSkip := GemTradeLoop(timeToTrade, true)
   }
 }
 
@@ -47,11 +47,11 @@ Numpad1::
   artifactsToSpam := ["fruit", "violin", "seedBag"]
   Loop {
     ; Attempt to cycle bosses5
-    WitchCycle(5)
+    timeToTrade := WitchCycle(5)
     BrewDE()
     SpamArtifacts(artifactsToSpam)
     FindAndUseViolin()
-    GemTradeLoop(true)
+    GemTradeLoop(timeToTrade, true)
   }
 }
 
