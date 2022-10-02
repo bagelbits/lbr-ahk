@@ -1,7 +1,7 @@
 global teleportX := 1761
 global bossConfig := Yaml("config\bosses.yaml")
 
-WitchCycle(cycleMax := 0) {
+WitchCycle(cycleMax := 1) {
   static witchCycleCount := 0
   if (HasWitchSpawned()) {
     ; Put on WEM/WCM set
@@ -29,7 +29,6 @@ WitchCycle(cycleMax := 0) {
 
 BossCycle(cycleMax := 2) {
   static bossCycleCount := 0
-  WitchCycle()
   if (HasCentaurSpawned()) {
     DelayedSend(hotKeys.menu.areas)
     ScrollToTop()
@@ -47,8 +46,6 @@ BossCycle(cycleMax := 2) {
       ClickAndWaitForBoss(teleportX, bossConfig[v].teleportY)
       lastY := bossConfig[v].teleportY
     }
-
-    HitTheCounter()
     ; Teleport home
     DelayedSend("{Space}")
     DelayedSend("{Esc}")

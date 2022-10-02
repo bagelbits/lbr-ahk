@@ -29,6 +29,7 @@ Numpad0::
   artifactsToSpam := ["blazingSkull", "wind"]
   timeToSkip := 0
   Loop {
+    WitchCycle()
     if (timeToSkip == 0) {
       BossCycle()
     } else {
