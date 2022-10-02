@@ -82,6 +82,7 @@ HitTheCounter() {
   ScrollToBottom()
   DelayedClick(teleportX, bossConfig.counter.teleportY)
   DelayedSend("{Esc}")
+  DelayedSend(hotKeys.loadout.damage)
   DelayedClick(1491, 531)
   DelayedClick(914, 470)
   DelayedSend("{Esc}")
@@ -97,6 +98,6 @@ AttemptTranscendAll() {
   DelayedClick(482, 399)
   DelayedSend("{Space}")
   DelayedClick(952, 399)
-  DelayedSend("{Space}"))
+  DelayedSend("{Space}")
   DelayedSend("{Esc}")
 }

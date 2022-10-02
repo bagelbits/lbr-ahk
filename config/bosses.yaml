@@ -43,6 +43,5 @@ terrorPurple:
   teleportY: 486
 superTerror:
   teleportY: 636
-  loadout: "damage"
 counter:
   teleportY: 910
