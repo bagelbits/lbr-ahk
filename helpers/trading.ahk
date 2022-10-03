@@ -4,7 +4,7 @@ GemTradeLoop(timeToTrade, shouldLeafscend := false) {
   static firstRun := true
   static tradesCollected := 0
   static timeToSkip := 0
-  if((TradesReady() or firstRun) and timeToTrade) {
+  if(firstRun or timeToTrade) {
     DelayedSend(hotKeys.menu.trading)
     ScrollToTop()
     Loop {

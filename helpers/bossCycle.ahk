@@ -13,14 +13,18 @@ WitchCycle(cycleMax := 1) {
     ClickAndWaitForBoss(teleportX, bossConfig.witch.teleportY)
     witchCycleCount++
 
-    if (cycleMax != 0) {
-      if (witchCycleCount >= cycleMax) {
-        HitTheCounter()
-        witchCycleCount := 0
-        timeToTrade := true
-      }
+    if (witchCycleCount >= cycleMax) {
+      HitTheCounter()
+      witchCycleCount := 0
+      timeToTrade := true
+    }
+
+    if (cycleMax > 1) {
       ; Put on reroll set (Brew/MBrew)
       DelayedSend(hotKeys.loadout.reroll)
+    } else {
+      ; Put on WEM/WCM set
+      DelayedSend(hotKeys.loadout.wem)
     }
 
     ; Teleport home
