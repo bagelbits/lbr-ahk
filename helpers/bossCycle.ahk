@@ -59,6 +59,14 @@ BossCycle(cycleMax := 2) {
     DelayedSend("{Esc}")
     bossCycleCount++
 
+    if (cycleMax > 2) {
+      ; Put on reroll set (Brew/MBrew)
+      DelayedSend(hotKeys.loadout.reroll)
+    } else {
+      ; Put on WEM/WCM set
+      DelayedSend(hotKeys.loadout.wem)
+    }
+
     if (bossCycleCount >= cycleMax) {
       AttemptTranscendAll()
       bossCycleCount := 0

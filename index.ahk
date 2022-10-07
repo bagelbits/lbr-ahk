@@ -19,67 +19,69 @@ global menuConfig := Yaml("config\menu.yaml")
 #Include artifact.ahk
 #Include trading.ahk
 
-global topMenuHotKeys = { gem:  "{F1}"
-                        , cards: "{F5}" }
+global topMenuHotKeys = { gem: "{F1}"
+  , cards: "{F5}" }
 
-; Tower + Boss cycle
-#IfWinActive Leaf Blower Revolution
-Numpad0::
-{
-  artifactsToSpam := ["blazingSkull", "wind"]
-  timeToSkip := 0
-  Loop {
-    timeToTrade := WitchCycle()
-    timeToSkip := GemTradeLoop(timeToTrade, true)
-    SpamArtifacts(artifactsToSpam)
-    if (timeToSkip == 0) {
-      BossCycle()
-    } else {
-      SpamArtifacts(["seedBag"])
+  ; Tower + Boss cycle
+  #IfWinActive Leaf Blower Revolution
+  Numpad0::
+    {
+      artifactsToSpam := ["blazingSkull", "wind"]
+      timeToSkip := 0
+      Loop {
+        timeToTrade := WitchCycle()
+        timeToSkip := GemTradeLoop(timeToTrade, true)
+        SpamArtifacts(artifactsToSpam)
+        if (timeToSkip == 0) {
+          BossCycle()
+        } else {
+          SpamArtifacts(["seedBag"])
+        }
+      }
     }
-  }
-}
 
-; Witch + Violin farm
-Numpad1::
-{
-  DelayedSend(hotKeys.loadout.reroll)
-  artifactsToSpam := ["fruit", "violin", "seedBag"]
-  Loop {
-    ; Attempt to cycle bosses5
-    timeToTrade := WitchCycle(5)
-    GemTradeLoop(timeToTrade, true)
-    BrewDE()
-    SpamArtifacts(artifactsToSpam)
-    FindAndUseViolin()
-  }
-}
+    ; Witch + Violin farm
+  Numpad1::
+    {
+      DelayedSend(hotKeys.loadout.reroll)
+      ; artifactsToSpam := ["fruit", "violin", "seedBag"]
+      artifactsToSpam := ["fruit", "violin"]
+      Loop {
+        ; Attempt to cycle bosses5
+        timeToTrade := WitchCycle(5)
+        ; GemTradeLoop(timeToTrade, true)
+        BossCycle(5)
+        BrewDE()
+        SpamArtifacts(artifactsToSpam)
+        FindAndUseViolin()
+      }
+    }
 
-; Gem trade testing
-Numpad2::
-{
-  artifactsToSpam := ["blazingSkull", "wind", "seedBag"]
-  Loop {
-    SpamArtifacts(artifactsToSpam)
-    ; GemTradeLoop()
-  }
-}
+    ; Gem trade testing
+  Numpad2::
+    {
+      artifactsToSpam := ["blazingSkull", "wind", "seedBag"]
+      Loop {
+        SpamArtifacts(artifactsToSpam)
+        ; GemTradeLoop()
+      }
+    }
 
-; Leafscend testing
-Numpad3::
-{
-  MsgBox, % leafscendConfig.maxTrades
-}
+    ; Leafscend testing
+  Numpad3::
+    {
+      MsgBox, % leafscendConfig.maxTrades
+    }
 
 #IfWinActive
 F11::
-{
-  Suspend
-  Pause, Toggle, 1
-}
+  {
+    Suspend
+    Pause, Toggle, 1
+  }
 
 F12::
-{
-  Suspend
-  Reload
-}
+  {
+    Suspend
+    Reload
+  }

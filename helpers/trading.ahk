@@ -29,6 +29,9 @@ GemTradeLoop(timeToTrade, shouldLeafscend := false) {
       DelayedClick(2020, 1138, 0)
     }
     DelayedSend("{Esc}")
+    if(!firstRun and tradesCollected == 0) {
+      TimeSkip()
+    }
   }
 
   if (shouldLeafscend) {
